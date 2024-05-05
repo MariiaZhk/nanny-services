@@ -6,7 +6,6 @@
   --green: #103931;
   --light-green: rgba(16, 57, 49, 0.2);
   --white: #fbfbfb;
-
   --background-primary: #f3f3f3;
   --background-hero: #fbfbfb;
   --text-grey: rgba(17, 16, 28, 0.5);
@@ -16,16 +15,3 @@
   --background-star: #ffc531;
   --button-border: rgba(251, 251, 251, 0.4);
 }
-
-/* :root {
-  --color-text-grey: rgba(17, 16, 28, 0.5);
-  --color-text-black: #11101C;
-  --color-text-white: #FBFBFB;
-  --color-text-filter: #8A8A89;
-  --color-text-price: #38CD3E;
-  --color-background-primary: #F3F3F3;
-  --color-background-accent: #103931;
-  --color-background-hero-and-icon: #FBFBFB;
-  --color-background-avatar: rgba(240, 63, 59, 0.2);
-  --color-background-star: #FFC531;
-  --color-button-border: rgba(251, 251, 251, 0.40);? */

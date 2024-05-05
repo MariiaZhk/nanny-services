@@ -9,14 +9,11 @@ export const HeroSection = styled.section`
 
 export const HeroContainer = styled.div`
   position: relative;
+  max-width: 1376px;
   margin: 0 auto;
   padding: 251px 96px 163px 96px;
-  max-width: 1376px;
-  max-height: 736px;
   background-color: var(--red);
   background-image: ${(props) => props.$url || "none"};
-  /* background-image: url("/src/assets/hero@2x.png"); */
-
   background-repeat: no-repeat;
   background-position: top right;
   background-size: contain;
