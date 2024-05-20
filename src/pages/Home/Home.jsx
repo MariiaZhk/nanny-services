@@ -21,6 +21,7 @@ function Home() {
   return (
     <>
       <Header />
+
       <HeroSection>
         <HeroContainer $url={heroImg && `url(${heroImg})`}>
           <LeftPartWrap>
@@ -30,8 +31,11 @@ function Home() {
             </TitleWrap>
             <HeroBtn>
               Get started
-              <HeroSvg>
+              <HeroSvg size="18px">
                 <use href={`${sprite}#icon-ArrowUp`} />
+              </HeroSvg>
+              <HeroSvg size="18px">
+                <use href={`${sprite}#icon-ArrowRight`} />
               </HeroSvg>
             </HeroBtn>
           </LeftPartWrap>

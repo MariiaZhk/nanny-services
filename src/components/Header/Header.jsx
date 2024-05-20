@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import {
   Btn,
   BtnWrap,
@@ -8,8 +9,23 @@ import {
   NavLinkStyled,
   Navigation,
 } from "./Header.styled";
+import {
+  changeIsModalOpen,
+  changeLoginModal,
+  changeRegistrationModal,
+} from "../../redux/modalsSlice";
 
 export const Header = () => {
+  const dispatch = useDispatch();
+
+  const onLoginClick = () => {
+    dispatch(changeIsModalOpen(true));
+    dispatch(changeLoginModal(true));
+  };
+  const onRegistrationClick = () => {
+    dispatch(changeIsModalOpen(true));
+    dispatch(changeRegistrationModal(true));
+  };
   return (
     <HeaderSection>
       <HeaderContainer>
@@ -21,11 +37,18 @@ export const Header = () => {
         <Navigation>
           <NavLinkStyled to="/">Home</NavLinkStyled>
           <NavLinkStyled to="nannies">Nannies</NavLinkStyled>
-          {/* <NavLink to="favorites">Favorites</NavLink> */}
+          <NavLinkStyled to="favorites">Favorites</NavLinkStyled>
         </Navigation>
         <BtnWrap>
-          <Btn>Log In</Btn>
-          <Btn $backgroundColor="#f03f3b" $border="none">
+          <Btn type="button" onClick={onLoginClick}>
+            Log In
+          </Btn>
+          <Btn
+            type="button"
+            onClick={onRegistrationClick}
+            $backgroundColor="var(--red)"
+            $border="none"
+          >
             Registration
           </Btn>
         </BtnWrap>

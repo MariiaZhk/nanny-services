@@ -71,4 +71,10 @@ export const Btn = styled.button`
   line-height: 1.25;
   letter-spacing: -0.01em;
   color: inherit;
+  outline: none;
+
+  &:hover {
+    background-color: var(--white);
+    color: var(--red);
+  }
 `;

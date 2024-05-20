@@ -63,6 +63,23 @@ export const HeroBtn = styled.button`
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.01em;
+  position: relative;
+  svg {
+    display: inline-block;
+  }
+
+  svg:last-of-type {
+    display: none;
+  }
+  &:hover {
+    & > svg {
+      display: none;
+    }
+
+    & > svg:last-of-type {
+      display: inline-block;
+    }
+  }
 `;
 
 export const HeroSvg = styled.svg`
