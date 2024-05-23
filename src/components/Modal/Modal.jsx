@@ -7,8 +7,8 @@ import {
   BtnClose,
   ModalContainer,
   ModalStyled,
+  ModalSvg,
   Overlay,
-  SvgBtnClose,
 } from "./Modal.styled";
 import {
   selectAppointmentModal,
@@ -73,9 +73,9 @@ const Modal = () => {
             {appointmentModal && <AppointmentModal />}
 
             <BtnClose type="button" onClick={closeModal}>
-              <SvgBtnClose>
+              <ModalSvg>
                 <use href={`${sprite}#icon-x`} />
-              </SvgBtnClose>
+              </ModalSvg>
             </BtnClose>
           </ModalStyled>
         </Fade>

@@ -1,24 +1,61 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
-  EyeCloseSvg,
-  EyeOpenSvg,
+  ModalActionTypeBtn,
   ModalEyeBtn,
   ModalForm,
   ModalInput,
   ModalLabel,
-  ModalLoginBtn,
+  ModalSvg,
   ModalText,
   ModalTitle,
-} from "../LoginModal/LoginModal.styled";
+} from "../Modal/Modal.styled";
 import { useForm } from "react-hook-form";
 import sprite from "../../assets/sprite.svg";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  updateProfile,
+} from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { registration } from "../../redux/authSlice";
+import { closeModals } from "../../redux/modalsSlice";
+import { toast } from "react-toastify";
 
 const RegistrationModal = () => {
+  const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   const [eyePass, setEyePass] = useState(false);
 
   const showEyePass = () => {
     setEyePass(!eyePass);
+  };
+
+  const onSignUpClick = async ({ name, email, password }) => {
+    const auth = getAuth();
+    try {
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      await updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+      dispatch(
+        registration({
+          user: {
+            email: user.email,
+            id: user.uid,
+            name: user.displayName,
+          },
+          token: user.accessToken,
+        })
+      );
+      dispatch(closeModals(false));
+      toast.info(`Welcome, ${user.displayName}`);
+    } catch (error) {
+      console.error("Error during registration:", error);
+    }
   };
   return (
     <div>
@@ -27,7 +64,7 @@ const RegistrationModal = () => {
         Thank you for your interest in our platform! In order to register, we
         need some information. Please provide us with the following information.
       </ModalText>
-      <ModalForm onSubmit={handleSubmit}>
+      <ModalForm onSubmit={handleSubmit(onSignUpClick)}>
         <ModalLabel htmlFor="name">
           <ModalInput
             {...register("name")}
@@ -48,15 +85,13 @@ const RegistrationModal = () => {
         </ModalLabel>
         <ModalLabel htmlFor="password">
           <ModalEyeBtn type="button" onClick={showEyePass}>
-            {eyePass ? (
-              <EyeOpenSvg>
+            <ModalSvg>
+              {eyePass ? (
                 <use href={`${sprite}#icon-eye`} />
-              </EyeOpenSvg>
-            ) : (
-              <EyeCloseSvg>
+              ) : (
                 <use href={`${sprite}#icon-eye-off`} />
-              </EyeCloseSvg>
-            )}
+              )}
+            </ModalSvg>
           </ModalEyeBtn>
           <ModalInput
             {...register("password")}
@@ -66,7 +101,7 @@ const RegistrationModal = () => {
             id="password"
           />
         </ModalLabel>
-        <ModalLoginBtn type="submit">Sign Up</ModalLoginBtn>
+        <ModalActionTypeBtn type="submit">Sign Up</ModalActionTypeBtn>
       </ModalForm>
     </div>
   );

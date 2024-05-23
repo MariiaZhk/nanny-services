@@ -13,12 +13,18 @@ export const HeaderContainer = styled.div`
   margin: 0 auto;
   display: flex;
   align-items: center;
+  /* justify-content: space-between; */
   padding: 30px 96px;
   color: var(--white);
 `;
 
 export const LogoWrap = styled.div`
-  margin-right: 487px;
+  /* margin-right: 487px; */
+`;
+
+export const Wrap = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const Logo = styled.a`

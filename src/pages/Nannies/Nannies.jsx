@@ -1,63 +1,63 @@
-import { useEffect, useState } from "react";
 import NanniesList from "../../components/NanniesList/NanniesList";
+// import {
+//   getDatabase,
+//   onValue,
+//   orderByChild,
+//   query,
+//   ref,
+//   limitToFirst,
+// } from "firebase/database";
+// import app from "../../firebaseConfig";
 import {
-  getDatabase,
-  onValue,
-  orderByChild,
-  query,
-  ref,
-  limitToFirst,
-} from "firebase/database";
-import app from "../../firebaseConfig";
-import {
-  LoadMoreBtn,
-  LoadMoreWrapper,
+  // LoadMoreBtn,
+  // LoadMoreWrapper,
   NanniesContainer,
   NanniesSection,
 } from "./Nannies.styled";
+import Container from "../../components/Container/Container";
 
 const Nannies = () => {
-  const [nannies, setNannies] = useState([]);
-  const [page, setPage] = useState(1);
-  const itemsPerPage = 3;
+  // const [nannies, setNannies] = useState([]);
+  // const [page, setPage] = useState(1);
+  // const itemsPerPage = 3;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const db = getDatabase(app);
-      const nanniesRef = ref(db, "nannies");
-      const nanniesQuery = query(
-        nanniesRef,
-        orderByChild("rating"),
-        limitToFirst(itemsPerPage * page)
-      );
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const db = getDatabase(app);
+  //     const nanniesRef = ref(db, "nannies");
+  //     const nanniesQuery = query(
+  //       nanniesRef,
+  //       orderByChild("rating"),
+  //       limitToFirst(itemsPerPage * page)
+  //     );
 
-      onValue(nanniesQuery, (snapshot) => {
-        const nanniesData = snapshot.val();
-        const nanniesArray = nanniesData ? Object.values(nanniesData) : [];
-        setNannies(nanniesArray);
-      });
-    };
+  //     onValue(nanniesQuery, (snapshot) => {
+  //       const nanniesData = snapshot.val();
+  //       const nanniesArray = nanniesData ? Object.values(nanniesData) : [];
+  //       setNannies(nanniesArray);
+  //     });
+  //   };
 
-    fetchData();
-  }, [page]);
+  //   fetchData();
+  // }, [page]);
 
-  const onLoadMoreClick = () => {
-    setPage(page + 1);
-  };
+  // const onLoadMoreClick = () => {
+  //   setPage(page + 1);
+  // };
 
   return (
-    <>
+    <Container>
       <NanniesSection>
         <NanniesContainer>
-          <NanniesList data={nannies} />
+          <NanniesList />
         </NanniesContainer>
-        <LoadMoreWrapper>
+        {/* <LoadMoreWrapper>
           <LoadMoreBtn type="button" onClick={onLoadMoreClick}>
             Load more
-          </LoadMoreBtn>
-        </LoadMoreWrapper>
+          </LoadMoreBtn> */}
+        {/* </LoadMoreWrapper> */}
       </NanniesSection>
-    </>
+    </Container>
   );
 };
 

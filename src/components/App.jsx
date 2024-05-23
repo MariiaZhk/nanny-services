@@ -4,13 +4,22 @@ import Nannies from "../pages/Nannies/Nannies";
 import Favorites from "../pages/Favorites/Favorites";
 import { Layout } from "./Layout/Layout";
 
+import PrivateRoute from "../routesConfig/PrivateRoute";
+
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="nannies" element={<Nannies />} />
-        <Route path="favorites" element={<Favorites />} />
+        <Route
+          path="favorites"
+          element={
+            <PrivateRoute>
+              <Favorites />
+            </PrivateRoute>
+          }
+        />
         <Route path="*" element={<Home />} />
       </Route>
     </Routes>

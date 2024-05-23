@@ -16,11 +16,22 @@ import {
 } from "./Home.styled";
 import sprite from "../../assets/sprite.svg";
 import heroImg from "../../assets/hero@2x.png";
+import { useDispatch } from "react-redux";
+import {
+  changeIsModalOpen,
+  changeRegistrationModal,
+} from "../../redux/modalsSlice";
+import Container from "../../components/Container/Container";
 
 function Home() {
+  const dispatch = useDispatch();
+  const onRegistrationClick = () => {
+    dispatch(changeIsModalOpen(true));
+    dispatch(changeRegistrationModal(true));
+  };
   return (
-    <>
-      <Header />
+    <Container>
+      <Header onRegistrationClick={onRegistrationClick} />
 
       <HeroSection>
         <HeroContainer $url={heroImg && `url(${heroImg})`}>
@@ -29,7 +40,7 @@ function Home() {
               <HeroTitle>Make Life Easier for the Family:</HeroTitle>
               <HeroText>Find Babysitters Online for All Occasions</HeroText>
             </TitleWrap>
-            <HeroBtn>
+            <HeroBtn type="button" onClick={onRegistrationClick}>
               Get started
               <HeroSvg size="18px">
                 <use href={`${sprite}#icon-ArrowUp`} />
@@ -52,7 +63,7 @@ function Home() {
           </RightPartWrap>
         </HeroContainer>
       </HeroSection>
-    </>
+    </Container>
   );
 }
 

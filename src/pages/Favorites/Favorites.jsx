@@ -1,5 +1,11 @@
+import NanniesList from "../../components/NanniesList/NanniesList";
+
 function Favorites() {
-  return <div>FavoritesPAGE</div>;
+  return (
+    <div>
+      <NanniesList></NanniesList>
+    </div>
+  );
 }
 
 export default Favorites;

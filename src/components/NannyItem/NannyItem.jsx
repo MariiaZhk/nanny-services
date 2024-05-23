@@ -21,8 +21,6 @@ import sprite from "../../assets/sprite.svg";
 import { useState } from "react";
 
 import NannyItemReviews from "../NannytemReviews/NannyItemReviews";
-import { useSelector } from "react-redux";
-import { selectIsModalOpen } from "../../redux/selectors";
 
 const NannyItem = ({ info }) => {
   const {

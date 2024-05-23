@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HeroSection = styled.section`
   margin: 0 auto;
   padding: 32px;
-  width: 100%;
+  /* width: 100%; */
   background-color: var(--background-hero);
 `;
 
