@@ -18,11 +18,17 @@ import {
   ReadMoreBtn,
 } from "../NannyItem/NannyItem.styled";
 import sprite from "../../assets/sprite.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import NannyItemReviews from "../NannytemReviews/NannyItemReviews";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFavorites } from "../../redux/selectors";
+import {
+  deleteFavoriteNanny,
+  setFavoriteNanny,
+} from "../../redux/nanniesSlice";
 
-const NannyItem = ({ info }) => {
+const NannyItem = ({ nanny }) => {
   const {
     name,
     avatar_url,
@@ -37,14 +43,24 @@ const NannyItem = ({ info }) => {
     rating,
     birthday,
     id,
-  } = info;
+  } = nanny;
 
-  const [isNannyFavorite, setIsNannyFavorite] = useState(false);
   const [isReviewVisible, setIsReviewVisible] = useState(false);
+  const favorites = useSelector(selectFavorites);
+  const dispatch = useDispatch();
+  const [isNannyFavorite, setIsNannyFavorite] = useState(false);
 
-  const onHeartBtnClick = () => {
-    setIsNannyFavorite(!isNannyFavorite);
-  };
+  useEffect(() => {
+    setIsNannyFavorite(favorites.some((nanny) => nanny.id === id));
+  }, [favorites, id]);
+
+  function onHeartBtnClick() {
+    if (!isNannyFavorite) {
+      dispatch(setFavoriteNanny(nanny));
+    } else {
+      dispatch(deleteFavoriteNanny(id));
+    }
+  }
 
   const onReadMoreClick = () => {
     setIsReviewVisible(!isReviewVisible);

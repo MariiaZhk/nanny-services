@@ -5,7 +5,7 @@ import {
   LoadMoreBtn,
   LoadMoreWrapper,
 } from "../../pages/Nannies/Nannies.styled";
-import { selectNannies } from "../../redux/selectors";
+import { selectIsLoadMore, selectNannies } from "../../redux/selectors";
 import { fetchNanniesPerPageThunk } from "../../redux/operations";
 import { NanniesListStyled } from "./NanniesList.styled";
 import NannyItem from "../NannyItem/NannyItem";
@@ -14,6 +14,7 @@ const NanniesList = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const nannies = useSelector(selectNannies);
+  const isLoadMore = useSelector(selectIsLoadMore);
 
   useEffect(() => {
     dispatch(fetchNanniesPerPageThunk(page))
@@ -22,19 +23,24 @@ const NanniesList = () => {
   }, [dispatch, page]);
 
   const onLoadMoreBtnClick = () => {
-    const nextPage = page + 1;
-    setPage(nextPage);
+    setPage((prevPage) => prevPage + 1);
   };
 
   return (
     <>
       <NanniesListStyled>
-        {nannies.map((item) => (
-          <NannyItem key={item.id} info={item} />
+        {nannies.map((nanny) => (
+          <NannyItem key={nanny.id} nanny={nanny} />
         ))}
 
         <LoadMoreWrapper>
-          <LoadMoreBtn onClick={onLoadMoreBtnClick}>Load More</LoadMoreBtn>
+          <LoadMoreBtn
+            type="button"
+            onClick={onLoadMoreBtnClick}
+            // style={{ display: isLoadMore ? "block" : "none" }}
+          >
+            Load More
+          </LoadMoreBtn>
         </LoadMoreWrapper>
       </NanniesListStyled>
     </>

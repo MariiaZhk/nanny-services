@@ -5,20 +5,10 @@ const initialState = {
   nannies: [],
   favorites: [],
   loadMore: true,
-  isLoading: false,
-  error: null,
+  // isLoading: false,
+  // error: null,
   filter: null,
   filteredNannies: [],
-};
-
-const onPending = (state) => {
-  state.isLoading = true;
-  state.error = null;
-};
-
-const onRejected = (state, { payload }) => {
-  state.isLoading = false;
-  state.error = payload;
 };
 
 const nanniesSlice = createSlice({
@@ -48,15 +38,11 @@ const nanniesSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      .addCase(fetchNanniesThunk.pending, onPending)
-      .addCase(fetchNanniesThunk.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.nannies = payload;
-        state.error = null;
-      })
-      .addCase(fetchNanniesThunk.rejected, onRejected)
 
-      .addCase(fetchNanniesPerPageThunk.pending, onPending)
+      .addCase(fetchNanniesThunk.fulfilled, (state, { payload }) => {
+        state.nannies = payload;
+      })
+
       .addCase(fetchNanniesPerPageThunk.fulfilled, (state, { payload }) => {
         if (payload.length < 3) {
           state.loadMore = false;
@@ -68,10 +54,8 @@ const nanniesSlice = createSlice({
         );
 
         state.nannies = [...state.nannies, ...uniquePayload];
-        state.isLoading = false;
-      })
-
-      .addCase(fetchNanniesPerPageThunk.rejected, onRejected);
+        // state.isLoading = false;
+      });
   },
 });
 

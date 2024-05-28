@@ -1,13 +1,12 @@
-import { Header } from "../../components/Header/Header";
 import {
-  HeroBtn,
-  HeroContainer,
+  HeroLink,
   HeroSection,
   HeroSvg,
   HeroText,
   HeroTitle,
   InfoNumber,
   InfoText,
+  InfoTextWrap,
   InfoWrap,
   LeftPartWrap,
   RightPartWrap,
@@ -16,54 +15,41 @@ import {
 } from "./Home.styled";
 import sprite from "../../assets/sprite.svg";
 import heroImg from "../../assets/hero@2x.png";
-import { useDispatch } from "react-redux";
-import {
-  changeIsModalOpen,
-  changeRegistrationModal,
-} from "../../redux/modalsSlice";
-import Container from "../../components/Container/Container";
 
 function Home() {
-  const dispatch = useDispatch();
-  const onRegistrationClick = () => {
-    dispatch(changeIsModalOpen(true));
-    dispatch(changeRegistrationModal(true));
-  };
   return (
-    <Container>
-      <Header onRegistrationClick={onRegistrationClick} />
+    <HeroSection>
+      <LeftPartWrap>
+        <TitleWrap>
+          <HeroTitle>Make Life Easier for the Family:</HeroTitle>
+          <HeroText>Find Babysitters Online for All Occasions</HeroText>
+        </TitleWrap>
+        <HeroLink to={"/nannies"}>
+          Get started
+          <HeroSvg size="18px">
+            <use href={`${sprite}#icon-ArrowUp`} />
+          </HeroSvg>
+          <HeroSvg size="18px">
+            <use href={`${sprite}#icon-ArrowRight`} />
+          </HeroSvg>
+        </HeroLink>
+      </LeftPartWrap>
+      <RightPartWrap>
+        <img src={heroImg} />
 
-      <HeroSection>
-        <HeroContainer $url={heroImg && `url(${heroImg})`}>
-          <LeftPartWrap>
-            <TitleWrap>
-              <HeroTitle>Make Life Easier for the Family:</HeroTitle>
-              <HeroText>Find Babysitters Online for All Occasions</HeroText>
-            </TitleWrap>
-            <HeroBtn type="button" onClick={onRegistrationClick}>
-              Get started
-              <HeroSvg size="18px">
-                <use href={`${sprite}#icon-ArrowUp`} />
-              </HeroSvg>
-              <HeroSvg size="18px">
-                <use href={`${sprite}#icon-ArrowRight`} />
-              </HeroSvg>
-            </HeroBtn>
-          </LeftPartWrap>
-          <RightPartWrap>
-            <SvgWrap>
-              <HeroSvg size="30px">
-                <use href={`${sprite}#icon-check`} />
-              </HeroSvg>
-            </SvgWrap>
-            <InfoWrap>
-              <InfoText>Experienced nannies</InfoText>
-              <InfoNumber>15,000</InfoNumber>
-            </InfoWrap>
-          </RightPartWrap>
-        </HeroContainer>
-      </HeroSection>
-    </Container>
+        <InfoWrap>
+          <SvgWrap>
+            <HeroSvg size="30px">
+              <use href={`${sprite}#icon-check`} />
+            </HeroSvg>
+          </SvgWrap>
+          <InfoTextWrap>
+            <InfoText>Experienced nannies</InfoText>
+            <InfoNumber>15,000</InfoNumber>
+          </InfoTextWrap>
+        </InfoWrap>
+      </RightPartWrap>
+    </HeroSection>
   );
 }
 

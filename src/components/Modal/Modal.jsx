@@ -14,6 +14,7 @@ import {
   selectAppointmentModal,
   selectIsModalOpen,
   selectLoginModal,
+  selectLogoutModal,
   selectRegistrationModal,
 } from "../../redux/selectors";
 import LoginModal from "../LoginModal/LoginModal";
@@ -21,6 +22,7 @@ import RegistrationModal from "../RegistrationModal/RegistrationModal";
 
 import { useCallback, useEffect } from "react";
 import AppointmentModal from "../AppointmentModal/AppointmentModal";
+import LogoutModal from "../LogoutModal/LogoutModal";
 
 const modalRoot = document.getElementById("portal");
 
@@ -29,6 +31,7 @@ const Modal = () => {
   const loginModal = useSelector(selectLoginModal);
   const registrationModal = useSelector(selectRegistrationModal);
   const appointmentModal = useSelector(selectAppointmentModal);
+  const logoutModal = useSelector(selectLogoutModal);
   const isModalOpen = useSelector(selectIsModalOpen);
 
   useEffect(() => {
@@ -71,7 +74,7 @@ const Modal = () => {
             {loginModal && <LoginModal />}
             {registrationModal && <RegistrationModal />}
             {appointmentModal && <AppointmentModal />}
-
+            {logoutModal && <LogoutModal />}
             <BtnClose type="button" onClick={closeModal}>
               <ModalSvg>
                 <use href={`${sprite}#icon-x`} />

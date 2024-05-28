@@ -1,55 +1,55 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeroSection = styled.section`
-  margin: 0 auto;
-  padding: 32px;
-  /* width: 100%; */
-  background-color: var(--background-hero);
-`;
-
-export const HeroContainer = styled.div`
   position: relative;
   max-width: 1376px;
-  margin: 0 auto;
-  padding: 251px 96px 163px 96px;
-  background-color: var(--red);
-  background-image: ${(props) => props.$url || "none"};
-  background-repeat: no-repeat;
-  background-position: top right;
-  background-size: contain;
+  margin: 32px;
   border-radius: 30px;
+  height: calc(100lvh - 64px);
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: var(--background-hero);
   color: var(--white);
 `;
 
 export const LeftPartWrap = styled.div`
-  max-width: 517px;
+  width: 517px;
+  flex: 1 1 49%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 64px;
+
+  padding-top: 251px;
+  padding-right: 64px;
+  padding-bottom: 15px;
+  padding-left: 96px;
+  background-color: var(--red);
 `;
 
 export const TitleWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 28px;
+  margin-bottom: 64px;
 `;
 
 export const HeroTitle = styled.h1`
   font-size: 70px;
   font-weight: 500;
   line-height: 1;
-  letter-spacing: -2.1px;
+  letter-spacing: -0.03em;
 `;
 
 export const HeroText = styled.p`
   font-size: 28px;
-  font-weight: 400;
   line-height: 1.07;
-  letter-spacing: -0.56px;
+  letter-spacing: -0.02em;
 `;
 
-export const HeroBtn = styled.button`
+export const HeroLink = styled(Link)`
+  max-width: 240px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,12 +58,14 @@ export const HeroBtn = styled.button`
   border-radius: 30px;
   border: 1px solid rgba(251, 251, 251, 0.4);
   background-color: transparent;
-  color: inherit;
   font-size: 20px;
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.01em;
   position: relative;
+  &:hover {
+    box-shadow: 4px 4px 4px rgba(0.2, 0.2, 0.2, 0.2);
+  }
   svg {
     display: inline-block;
   }
@@ -72,11 +74,11 @@ export const HeroBtn = styled.button`
     display: none;
   }
   &:hover {
-    & > svg {
+    svg {
       display: none;
     }
 
-    & > svg:last-of-type {
+    svg:last-of-type {
       display: inline-block;
     }
   }
@@ -89,18 +91,25 @@ export const HeroSvg = styled.svg`
 `;
 
 export const RightPartWrap = styled.div`
+  flex: 1 1 51%;
+  height: auto;
+  img {
+    height: calc(100lvh - 64px);
+    width: 100%;
+    box-shadow: inset 0 4px 4px 0 rgba(18, 20, 23, 0.6);
+  }
+`;
+
+export const InfoWrap = styled.div`
   position: absolute;
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  align-items: center;
-  width: 284px;
-  height: 118px;
   bottom: 50px;
   right: 50px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
   padding: 32px;
   border-radius: 20px;
-  background-color: var(--background-hero);
+  background-color: var(--white);
 `;
 
 export const SvgWrap = styled.div`
@@ -112,13 +121,11 @@ export const SvgWrap = styled.div`
   border-radius: 13px;
   background: var(--red);
 `;
-
-export const InfoWrap = styled.div`
+export const InfoTextWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
 `;
-
 export const InfoText = styled.p`
   font-size: 16px;
   letter-spacing: -0.3px;

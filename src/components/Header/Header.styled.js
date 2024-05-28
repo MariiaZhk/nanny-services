@@ -1,33 +1,38 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-export const HeaderSection = styled.section`
-  position: absolute;
+export const StyledHeader = styled.div`
+  max-width: 100%;
+  position: ${({ $home }) => ($home ? "absolute" : "static")};
   z-index: 10;
-  top: 32px;
+  top: 0;
   left: 0;
-  background-color: transparent;
-  border-bottom: 1px solid var(--button-border);
-`;
-export const HeaderContainer = styled.div`
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  /* justify-content: space-between; */
-  padding: 30px 96px;
+  background-color: ${({ $home }) => ($home ? "transparent" : "var(--red)")};
+  border-bottom: ${({ $home }) =>
+    $home ? "  1px solid var(--button-border)" : "none"};
+
+  padding-inline: ${({ $home }) => ($home ? "128px" : "0")};
+  width: ${({ $home }) => ($home ? "100%" : "100%")};
   color: var(--white);
 `;
 
-export const LogoWrap = styled.div`
-  /* margin-right: 487px; */
-`;
-
-export const Wrap = styled.div`
+export const HeaderNavWrap = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding-block: 20px;
+  margin: 0 auto;
+  max-width: 1184px;
 `;
 
-export const Logo = styled.a`
+export const LogoWrap = styled.div`
+  padding-right: ${({ $home }) => ($home ? "0px" : "180px")};
+`;
+export const Wrap = styled.div`
+  display: flex;
+  gap: 92px;
+`;
+export const Logo = styled(Link)`
   font-size: 24px;
   font-weight: 500;
   line-height: 1.17;
@@ -37,14 +42,13 @@ export const Logo = styled.a`
 export const Navigation = styled.nav`
   display: flex;
   gap: 40px;
-  margin-right: 92px;
+  align-items: center;
 `;
 export const NavLinkStyled = styled(NavLink)`
   position: relative;
   font-size: 16px;
   line-height: 1.25;
   letter-spacing: -0.01em;
-  margin-bottom: 12px;
 
   &.active {
     &:after {
@@ -58,29 +62,5 @@ export const NavLinkStyled = styled(NavLink)`
       background-color: white;
       border-radius: 50%;
     }
-  }
-`;
-
-export const BtnWrap = styled.div`
-  display: flex;
-  align-items: flex-end;
-  gap: 8px;
-`;
-
-export const Btn = styled.button`
-  border: ${(props) => props.$border || "1px solid rgba(251, 251, 251, 0.4)"};
-  border-radius: 30px;
-  padding: 14px 39px;
-  background-color: ${(props) => props.$backgroundColor || "transparent"};
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  color: inherit;
-  outline: none;
-
-  &:hover {
-    background-color: var(--white);
-    color: var(--red);
   }
 `;

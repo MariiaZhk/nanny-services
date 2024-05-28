@@ -1,56 +1,39 @@
-import { useDispatch } from "react-redux";
 import {
-  Btn,
-  BtnWrap,
-  HeaderContainer,
-  HeaderSection,
+  HeaderNavWrap,
   Logo,
   LogoWrap,
   NavLinkStyled,
   Navigation,
+  StyledHeader,
   Wrap,
 } from "./Header.styled";
-import { changeIsModalOpen, changeLoginModal } from "../../redux/modalsSlice";
 
-export const Header = ({ onRegistrationClick }) => {
-  const dispatch = useDispatch();
+import AuthUserBlock from "./AuthBlock/AuthBlock";
+import useAuth from "../../utils/hooks";
+import { useLocation } from "react-router-dom";
 
-  const onLoginClick = () => {
-    dispatch(changeIsModalOpen(true));
-    dispatch(changeLoginModal(true));
-  };
+export const Header = () => {
+  const { isAuth } = useAuth();
+  const location = useLocation();
+  const { pathname } = location;
+  const applyStyles = pathname === "/";
 
   return (
-    <HeaderSection>
-      <HeaderContainer>
+    <StyledHeader $home={applyStyles}>
+      <HeaderNavWrap $home={applyStyles}>
+        <LogoWrap $home={applyStyles}>
+          <Logo to="/">Nanny.Services</Logo>
+        </LogoWrap>
         <Wrap>
-          <LogoWrap>
-            <Logo href="/" aria-label="To home page">
-              Nanny.Services
-            </Logo>
-          </LogoWrap>
-          <div>
-            <Navigation>
-              <NavLinkStyled to="/">Home</NavLinkStyled>
-              <NavLinkStyled to="nannies">Nannies</NavLinkStyled>
-              <NavLinkStyled to="favorites">Favorites</NavLinkStyled>
-            </Navigation>{" "}
-          </div>
+          <Navigation>
+            <NavLinkStyled to="/">Home</NavLinkStyled>
+            <NavLinkStyled to="nannies">Nannies</NavLinkStyled>
+            {isAuth && <NavLinkStyled to="/favorites">Favorites</NavLinkStyled>}
+          </Navigation>
+
+          <AuthUserBlock />
         </Wrap>
-        <BtnWrap>
-          <Btn type="button" onClick={onLoginClick}>
-            Log In
-          </Btn>
-          <Btn
-            type="button"
-            onClick={onRegistrationClick}
-            $backgroundColor="var(--red)"
-            $border="none"
-          >
-            Registration
-          </Btn>
-        </BtnWrap>
-      </HeaderContainer>
-    </HeaderSection>
+      </HeaderNavWrap>
+    </StyledHeader>
   );
 };

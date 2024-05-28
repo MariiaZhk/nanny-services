@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 export const NanniesSection = styled.section`
-  margin: 0 auto;
-  padding: 64px 128px 100px 128px;
-  width: 100%;
+  max-width: 1184px;
+  margin: 64px auto;
 `;
 
 export const NanniesContainer = styled.div`

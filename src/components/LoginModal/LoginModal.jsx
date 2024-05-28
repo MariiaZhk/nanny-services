@@ -1,9 +1,5 @@
 import { useState } from "react";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {
   ModalActionTypeBtn,
   ModalEyeBtn,

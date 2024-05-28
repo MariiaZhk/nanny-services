@@ -18,7 +18,7 @@ const StyledToastContainer = () => {
         background: "var(--white)",
         color: "var(--red)",
         width: "400px",
-        fontSize: "24px",
+        fontSize: "16px",
         fontWeight: "600",
         borderRadius: "30px",
         border: "4px solid var(--red)",

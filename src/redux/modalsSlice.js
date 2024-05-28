@@ -7,6 +7,7 @@ export const modalsSlice = createSlice({
     loginModal: false,
     registrationModal: false,
     appointmentModal: false,
+    logoutModal: false,
   },
 
   reducers: {
@@ -22,11 +23,15 @@ export const modalsSlice = createSlice({
     changeAppointmentModal: (state, { payload }) => {
       state.appointmentModal = payload;
     },
+    changeLogoutModal: (state, { payload }) => {
+      state.logoutModal = payload;
+    },
     closeModals: (state, { payload }) => {
       state.isModalOpen = payload;
       state.loginModal = payload;
       state.registrationModal = payload;
       state.appointmentModal = payload;
+      state.logoutModal = payload;
     },
   },
 });
@@ -37,5 +42,6 @@ export const {
   changeLoginModal,
   changeRegistrationModal,
   changeAppointmentModal,
+  changeLogoutModal,
   closeModals,
 } = modalsSlice.actions;

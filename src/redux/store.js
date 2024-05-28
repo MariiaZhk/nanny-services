@@ -14,7 +14,7 @@ import storage from "redux-persist/lib/storage";
 import { modalsReducer } from "./modalsSlice";
 import { authReducer } from "./authSlice";
 import { nanniesReducer } from "./nanniesSlice";
-// import { globalReducer } from "./Global/globalSlice.jsx";
+import { globalReducer } from "./GlobalSlice";
 
 const authPersistConfig = {
   key: "auth",
@@ -34,11 +34,11 @@ const nanniesPersistConfig = {
   storage,
   whitelist: ["favorites"],
 };
-// const globalPersistConfig = {
-//   key: "global",
-//   storage,
-//   whitelist: [],
-// };
+const globalPersistConfig = {
+  key: "global",
+  storage,
+  whitelist: [],
+};
 
 const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 
@@ -50,17 +50,17 @@ const persistedNanniesReducer = persistReducer(
   nanniesPersistConfig,
   nanniesReducer
 );
-// const persistedGlobalReducer = persistReducer(
-//   globalPersistConfig,
-//   globalReducer
-// );
+const persistedGlobalReducer = persistReducer(
+  globalPersistConfig,
+  globalReducer
+);
 
 export const store = configureStore({
   reducer: {
     authSlice: persistedAuthReducer,
     modalsSlice: persistedModalsReducer,
     nanniesSlice: persistedNanniesReducer,
-    // globalSlice: persistedGlobalReducer,
+    globalSlice: persistedGlobalReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

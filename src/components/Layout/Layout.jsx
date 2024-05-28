@@ -6,17 +6,20 @@ import Modal from "../Modal/Modal";
 import { useSelector } from "react-redux";
 import { selectIsModalOpen } from "../../redux/selectors";
 
+import { Main } from "./Layout.styled";
+import Container from "../Container/Container";
+
 export const Layout = () => {
   const isModalOpen = useSelector(selectIsModalOpen);
   return (
-    <>
+    <Container>
       <Header />
-      <main>
+      <Main>
         {isModalOpen && <Modal />}
         <Suspense fallback={<div>Loading...</div>}>
           <Outlet />
         </Suspense>
-      </main>
-    </>
+      </Main>
+    </Container>
   );
 };
