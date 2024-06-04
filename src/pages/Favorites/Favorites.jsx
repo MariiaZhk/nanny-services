@@ -11,6 +11,7 @@ import NannyItem from "../../components/NannyItem/NannyItem";
 import { NanniesListStyled } from "../../components/NanniesList/NanniesList.styled";
 
 import { FavoritesSection } from "./Favorites.styled";
+import Filters from "../../components/Filters/Filters";
 
 const Favorites = () => {
   const favorites = useSelector(selectFavorites);
@@ -18,13 +19,16 @@ const Favorites = () => {
   return (
     <FavoritesSection>
       {favorites?.length > 0 ? (
-        <NanniesContainer>
-          <NanniesListStyled>
-            {favorites?.map((nanny) => (
-              <NannyItem nanny={nanny} key={nanny.id} />
-            ))}
-          </NanniesListStyled>
-        </NanniesContainer>
+        <>
+          <Filters />
+          <NanniesContainer>
+            <NanniesListStyled>
+              {favorites?.map((nanny) => (
+                <NannyItem nanny={nanny} key={nanny.id} />
+              ))}
+            </NanniesListStyled>
+          </NanniesContainer>
+        </>
       ) : (
         <div>
           <h2>Choose your favorite babysitters in the catalog.</h2>
