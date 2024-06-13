@@ -1,12 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchNanniesPerPageThunk, fetchNanniesThunk } from "./operations";
+import { fetchNanniesThunk } from "./operations";
 
 const initialState = {
   nannies: [],
   favorites: [],
   loadMore: true,
-  // isLoading: false,
-  // error: null,
   filter: null,
   filteredNannies: [],
 };
@@ -37,25 +35,23 @@ const nanniesSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    builder
+    builder.addCase(fetchNanniesThunk.fulfilled, (state, { payload }) => {
+      state.nannies = payload;
+    });
 
-      .addCase(fetchNanniesThunk.fulfilled, (state, { payload }) => {
-        state.nannies = payload;
-      })
+    // .addCase(fetchNanniesPerPageThunk.fulfilled, (state, { payload }) => {
+    //   if (payload.length < 3) {
+    //     state.loadMore = false;
+    //   }
 
-      .addCase(fetchNanniesPerPageThunk.fulfilled, (state, { payload }) => {
-        if (payload.length < 3) {
-          state.loadMore = false;
-        }
+    //   const uniquePayload = payload.filter(
+    //     ({ id }) =>
+    //       !state.nannies.some((existingNanny) => existingNanny.id === id)
+    //   );
 
-        const uniquePayload = payload.filter(
-          ({ id }) =>
-            !state.nannies.some((existingNanny) => existingNanny.id === id)
-        );
-
-        state.nannies = [...state.nannies, ...uniquePayload];
-        // state.isLoading = false;
-      });
+    //   state.nannies = [...state.nannies, ...uniquePayload];
+    //   // state.isLoading = false;
+    // });
   },
 });
 

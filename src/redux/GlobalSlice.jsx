@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { fetchNanniesPerPageThunk, fetchNanniesThunk } from "./operations";
+import { fetchNanniesThunk } from "./operations";
 
 const initialState = {
   isLoading: false,
@@ -27,18 +27,15 @@ const globalSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addMatcher(
-        isAnyOf(
-          fetchNanniesThunk.fulfilled,
-          fetchNanniesPerPageThunk.fulfilled
-        ),
+        isAnyOf(fetchNanniesThunk.fulfilled, fetchNanniesThunk.fulfilled),
         handleFulfilled
       )
       .addMatcher(
-        isAnyOf(fetchNanniesThunk.pending, fetchNanniesPerPageThunk.pending),
+        isAnyOf(fetchNanniesThunk.pending, fetchNanniesThunk.pending),
         handlePending
       )
       .addMatcher(
-        isAnyOf(fetchNanniesThunk.rejected, fetchNanniesPerPageThunk.rejected),
+        isAnyOf(fetchNanniesThunk.rejected, fetchNanniesThunk.rejected),
         handleRejected
       );
   },

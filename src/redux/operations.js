@@ -2,9 +2,9 @@ import {
   getDatabase,
   query,
   ref,
-  orderByChild,
-  limitToFirst,
+  // limitToFirst,
   get,
+  orderByKey,
 } from "firebase/database";
 import app from "../firebaseConfig";
 import { createAsyncThunk } from "@reduxjs/toolkit";
@@ -17,7 +17,7 @@ export const fetchNanniesThunk = createAsyncThunk(
     try {
       const db = getDatabase(app);
       const nanniesRef = ref(db, "nannies");
-      const nanniesQuery = query(nanniesRef, orderByChild("rating"));
+      const nanniesQuery = query(nanniesRef, orderByKey());
       const snapshot = await get(nanniesQuery);
       const nanniesData = snapshot.val();
       return nanniesData ? Object.values(nanniesData) : [];
@@ -27,25 +27,25 @@ export const fetchNanniesThunk = createAsyncThunk(
   }
 );
 
-export const fetchNanniesPerPageThunk = createAsyncThunk(
-  "nannies/fetchPerPage",
-  async (page, thunkAPI) => {
-    try {
-      const db = getDatabase(app);
+// export const fetchNanniesPerPageThunk = createAsyncThunk(
+//   "nannies/fetchPerPage",
+//   async (page, thunkAPI) => {
+//     try {
+//       const db = getDatabase(app);
 
-      const nanniesRef = ref(db, "nannies");
-      const nanniesQuery = query(
-        nanniesRef,
-        orderByChild("rating"),
+//       const nanniesRef = ref(db, "nannies");
+//       const nanniesQuery = query(
+//         nanniesRef,
+//         orderByKey(),
 
-        limitToFirst(LIMIT * page)
-      );
-      const snapshot = await get(nanniesQuery);
-      const nanniesData = snapshot.val();
-      return nanniesData ? Object.values(nanniesData) : [];
-    } catch (error) {
-      console.log(error.message);
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+//         limitToFirst(LIMIT * page)
+//       );
+//       const snapshot = await get(nanniesQuery);
+//       const nanniesData = snapshot.val();
+//       return nanniesData ? Object.values(nanniesData) : [];
+//     } catch (error) {
+//       console.log(error.message);
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );

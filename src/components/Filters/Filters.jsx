@@ -3,24 +3,28 @@ import Select from "react-select";
 import { FiltersLabel, FiltersWrap } from "./Filters.styled";
 import { Controller, useForm } from "react-hook-form";
 import { selectStyle } from "./Filters.styled";
+import { useDispatch } from "react-redux";
+import { setFilterAction } from "../../redux/nanniesSlice";
 
 const options = [
-  { value: "name", label: "A to Z" },
-  { value: "name desc", label: "Z to A" },
-  { value: "price_less", label: "Less than 10$" },
-  { value: "price_greater", label: "Greater than 10$" },
-  { value: "rating", label: "Popular" },
-  { value: "rating_minus", label: "Not popular" },
+  { value: "a-z", label: "A to Z" },
+  { value: "z-a", label: "Z to A" },
+  { value: "price-less", label: "Price Low to High" },
+  { value: "price-greater", label: "Price High to Low" },
+  { value: "popular", label: "Popular" },
+  { value: "not-popular", label: "Not popular" },
   { value: "all", label: "Show all" },
 ];
 
 const Filters = () => {
   const { control } = useForm({ mode: "onChange" });
-  const [selectedOption, setSelectedOption] = useState(options[6] || null);
+  const dispatch = useDispatch();
   const [isDropdownOpen, setIsDropdownOpen] = useState();
 
+  const defaultOption = options.find((option) => option.value === "all");
+
   const handleSelectOption = (option) => {
-    setSelectedOption(option);
+    dispatch(setFilterAction(option.value));
   };
 
   return (
@@ -35,7 +39,7 @@ const Filters = () => {
             <Select
               {...field}
               options={options}
-              defaultValue={selectedOption}
+              defaultValue={defaultOption}
               styles={selectStyle(isDropdownOpen)}
               onMenuOpen={() => {
                 setIsDropdownOpen(true);
