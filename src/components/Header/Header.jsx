@@ -9,8 +9,9 @@ import {
 } from "./Header.styled";
 
 import AuthUserBlock from "./AuthBlock/AuthBlock";
-import useAuth from "../../utils/hooks";
+
 import { useLocation } from "react-router-dom";
+import useAuth from "../../utils/hooks/useAuth";
 
 export const Header = () => {
   const { isAuth } = useAuth();

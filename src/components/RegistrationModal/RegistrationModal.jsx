@@ -25,6 +25,7 @@ const RegistrationModal = () => {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   const [eyePass, setEyePass] = useState(false);
+  const [error, setError] = useState(null);
 
   const showEyePass = () => {
     setEyePass(!eyePass);
@@ -47,16 +48,22 @@ const RegistrationModal = () => {
             email: user.email,
             id: user.uid,
             name: user.displayName,
+            token: user.accessToken,
           },
-          token: user.accessToken,
         })
       );
       dispatch(closeModals(false));
       toast.info(`Welcome, ${user.displayName}`);
     } catch (error) {
       console.error("Error during registration:", error);
+      if (error.code === "auth/email-already-in-use") {
+        setError("User with this email already exists.");
+      } else {
+        setError(error.message);
+      }
     }
   };
+
   return (
     <div>
       <ModalTitle>Registration</ModalTitle>

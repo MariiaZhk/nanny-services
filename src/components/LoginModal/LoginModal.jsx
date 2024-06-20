@@ -20,6 +20,7 @@ import { toast } from "react-toastify";
 const LoginModal = () => {
   const { register, handleSubmit } = useForm();
   const [eyePass, setEyePass] = useState(false);
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
   const showEyePass = () => {
@@ -36,18 +37,27 @@ const LoginModal = () => {
             email: user.email,
             id: user.uid,
             name: user.displayName,
+            token: user.accessToken,
           },
-          token: user.accessToken,
         })
       );
+
       dispatch(closeModals(false));
       toast.info(`Welcome back, ${user.displayName}`);
     } catch (error) {
       console.error("Error during registration:", error);
-    }
 
-    // const errorCode = error.code;
-    // const errorMessage = error.message;
+      if (
+        error.code === "auth/user-not-found" ||
+        error.code === "auth/invalid-credential"
+      ) {
+        setError(
+          "Email or password is incorrect. Check your credentials or sign up."
+        );
+      } else {
+        setError(error.message);
+      }
+    }
   };
 
   return (

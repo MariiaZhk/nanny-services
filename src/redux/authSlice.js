@@ -1,28 +1,42 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {
+  fetchUserFavoritesThunk,
+  removeFavoriteByIdThunk,
+  setUserFavoritesThunk,
+} from "./operations";
 
 const authSlice = createSlice({
   name: "auth",
   initialState: {
     user: null,
-    token: "",
+    favorites: [],
   },
   reducers: {
     registration: (state, { payload }) => {
       state.user = payload.user;
-      state.token = payload.token;
     },
     login: (state, { payload }) => {
       state.user = payload.user;
-      state.token = payload.token;
     },
     logout: (state) => {
       state.user = null;
-      state.token = "";
     },
-    current: (state, { payload }) => {
-      state.user = payload.user;
-      state.token = payload.token;
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchUserFavoritesThunk.fulfilled, (state, { payload }) => {
+        state.favorites = payload;
+      })
+
+      .addCase(setUserFavoritesThunk.fulfilled, (state, { payload }) => {
+        state.favorites = payload;
+      })
+
+      .addCase(removeFavoriteByIdThunk.fulfilled, (state, { payload }) => {
+        state.favorites = state.favorites.filter(
+          (favorite) => favorite.id !== payload
+        );
+      });
   },
 });
 

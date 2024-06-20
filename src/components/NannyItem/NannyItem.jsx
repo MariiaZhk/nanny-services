@@ -18,15 +18,19 @@ import {
   ReadMoreBtn,
 } from "../NannyItem/NannyItem.styled";
 import sprite from "../../assets/sprite.svg";
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
 import NannyItemReviews from "../NannytemReviews/NannyItemReviews";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFavorites } from "../../redux/selectors";
 import {
-  deleteFavoriteNanny,
-  setFavoriteNanny,
-} from "../../redux/nanniesSlice";
+  changeIsModalOpen,
+  changePleaseLoginModal,
+} from "../../redux/modalsSlice";
+import {
+  removeFavoriteByIdThunk,
+  setUserFavoritesThunk,
+} from "../../redux/operations";
+import useAuth from "../../utils/hooks/useAuth";
 
 const NannyItem = ({ nanny }) => {
   const {
@@ -46,21 +50,43 @@ const NannyItem = ({ nanny }) => {
   } = nanny;
 
   const [isReviewVisible, setIsReviewVisible] = useState(false);
-  const favorites = useSelector(selectFavorites);
+  const favorites = useSelector(selectFavorites) || [];
   const dispatch = useDispatch();
-  const [isNannyFavorite, setIsNannyFavorite] = useState(false);
+  const { isAuth, currentUser } = useAuth();
 
-  useEffect(() => {
-    setIsNannyFavorite(favorites.some((nanny) => nanny.id === id));
-  }, [favorites, id]);
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     dispatch(fetchUserFavoritesThunk(currentUser.id));
+  //   }
+  // }, [currentUser, dispatch]);
 
-  function onHeartBtnClick() {
-    if (!isNannyFavorite) {
-      dispatch(setFavoriteNanny(nanny));
+  const isNannyFavorite = () => {
+    return favorites.some((fav) => fav.id === id);
+  };
+
+  const onHeartBtnClick = () => {
+    if (isAuth) {
+      if (isNannyFavorite()) {
+        dispatch(
+          removeFavoriteByIdThunk({
+            userId: currentUser.id,
+            favoriteId: nanny.id,
+          })
+        );
+      } else {
+        const newFavorites = [...favorites, nanny];
+        dispatch(
+          setUserFavoritesThunk({
+            userId: currentUser.id,
+            favorites: newFavorites,
+          })
+        );
+      }
     } else {
-      dispatch(deleteFavoriteNanny(id));
+      dispatch(changeIsModalOpen(true));
+      dispatch(changePleaseLoginModal(true));
     }
-  }
+  };
 
   const onReadMoreClick = () => {
     setIsReviewVisible(!isReviewVisible);
@@ -116,9 +142,9 @@ const NannyItem = ({ nanny }) => {
                 <HeartBtn onClick={onHeartBtnClick}>
                   <CardSvg
                     size="26px"
-                    fill={isNannyFavorite ? "var(--red)" : "transparent"}
+                    fill={isNannyFavorite() ? "var(--red)" : "transparent"}
                     stroke={
-                      isNannyFavorite ? "var(--red)" : "var(--text-black)"
+                      isNannyFavorite() ? "var(--red)" : "var(--text-black)"
                     }
                   >
                     <use href={`${sprite}#icon-heart`} />

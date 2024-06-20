@@ -1,79 +1,47 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import {
   LoadMoreBtn,
   LoadMoreWrapper,
 } from "../../pages/Nannies/Nannies.styled";
+import { selectNannies } from "../../redux/selectors";
 import {
-  selectFilter,
-  selectFilteredNannies,
-  selectNannies,
-} from "../../redux/selectors";
-import { fetchNanniesThunk } from "../../redux/operations";
+  fetchNanniesThunk,
+  fetchUserFavoritesThunk,
+} from "../../redux/operations";
 import { NanniesListStyled } from "./NanniesList.styled";
 import NannyItem from "../NannyItem/NannyItem";
-import { setFilteredNannies } from "../../redux/nanniesSlice";
-
-const LIMIT = 3;
-
-const sortNannies = (nannies, filter) => {
-  return [...nannies].sort((a, b) => {
-    switch (filter) {
-      case "a-z":
-        return a.name.localeCompare(b.name);
-      case "z-a":
-        return b.name.localeCompare(a.name);
-      case "price-less":
-        return a.price_per_hour - b.price_per_hour;
-      case "price-greater":
-        return b.price_per_hour - a.price_per_hour;
-      case "popular":
-        return b.rating - a.rating;
-      case "not-popular":
-        return a.rating - b.rating;
-      default:
-        return 0;
-    }
-  });
-};
+import useFilteredPaginatedList from "../../utils/hooks/useFilteredPaginatedList";
+import useAuth from "../../utils/hooks/useAuth";
 
 const NanniesList = () => {
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
   const nannies = useSelector(selectNannies);
-  const filter = useSelector(selectFilter);
-  const filteredNannies = useSelector(selectFilteredNannies);
+  const { currentUser } = useAuth();
+
+  const { displayedItems, haveMoreItems, onLoadMoreClick } =
+    useFilteredPaginatedList(nannies);
 
   useEffect(() => {
-    dispatch(fetchNanniesThunk())
-      .unwrap()
-      .catch((err) => toast.error(err));
-  }, [dispatch]);
-
-  useEffect(() => {
-    const sortedNannies = sortNannies(nannies, filter);
-    setPage(1);
-    dispatch(setFilteredNannies(sortedNannies));
-  }, [dispatch, filter, nannies]);
-
-  const displayedNannies = filteredNannies.slice(0, page * LIMIT);
-  const hasMoreNannies = page * LIMIT < filteredNannies.length;
-
-  const onLoadMoreBtnClick = () => {
-    setPage((prevPage) => prevPage + 1);
-  };
+    dispatch(fetchNanniesThunk());
+    if (currentUser) {
+      dispatch(fetchUserFavoritesThunk(currentUser.id))
+        .unwrap()
+        .catch((err) => toast.error(err));
+    }
+  }, [dispatch, currentUser]);
 
   return (
     <>
       <NanniesListStyled>
-        {displayedNannies.map((nanny) => (
+        {displayedItems.map((nanny) => (
           <NannyItem key={nanny.id} nanny={nanny} />
         ))}
 
-        {hasMoreNannies && (
+        {haveMoreItems && (
           <LoadMoreWrapper>
-            <LoadMoreBtn type="button" onClick={onLoadMoreBtnClick}>
+            <LoadMoreBtn type="button" onClick={onLoadMoreClick}>
               Load More
             </LoadMoreBtn>
           </LoadMoreWrapper>

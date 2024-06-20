@@ -7,7 +7,7 @@ export const selectAppointmentModal = (state) =>
 export const selectLogoutModal = (state) => state.modalsSlice.logoutModal;
 
 export const selectUser = (state) => state.authSlice.user;
-export const selectCurrentUser = (state) => state.authSlice.user;
+export const selectFavorites = (state) => state.authSlice.favorites;
 
 export const selectNanniesPerPage = (state) =>
   state.nanniesSlice.nanniesPerPage;
@@ -15,7 +15,6 @@ export const selectNannies = (state) => state.nanniesSlice.nannies;
 export const selectFilter = (state) => state.nanniesSlice.filter;
 export const selectFilteredNannies = (state) =>
   state.nanniesSlice.filteredNannies;
-export const selectFavorites = (state) => state.nanniesSlice.favorites;
 export const selectIsLoadMore = (state) => state.nanniesSlice.isLoadMore;
 
 export const selectError = (state) => state.globalSlice.error;

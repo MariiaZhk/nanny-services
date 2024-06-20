@@ -20,7 +20,7 @@ const authPersistConfig = {
   key: "auth",
   version: 1,
   storage,
-  whitelist: ["token", "user"],
+  whitelist: ["user", "favorites"],
 };
 
 const modalsPersistConfig = {
@@ -32,7 +32,7 @@ const modalsPersistConfig = {
 const nanniesPersistConfig = {
   key: "nannies",
   storage,
-  whitelist: ["favorites"],
+  whitelist: [],
 };
 const globalPersistConfig = {
   key: "global",
