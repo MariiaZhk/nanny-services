@@ -6,8 +6,8 @@ import Filters from "../../components/Filters/Filters";
 const Nannies = () => {
   return (
     <NanniesSection>
-      <Filters />
-      <NanniesList />
+      <Filters filterType="nannies" />
+      <NanniesList filterType="nannies" />
     </NanniesSection>
   );
 };

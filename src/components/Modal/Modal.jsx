@@ -15,6 +15,7 @@ import {
   selectIsModalOpen,
   selectLoginModal,
   selectLogoutModal,
+  selectPleaseLoginModal,
   selectRegistrationModal,
 } from "../../redux/selectors";
 import LoginModal from "../LoginModal/LoginModal";
@@ -23,12 +24,14 @@ import RegistrationModal from "../RegistrationModal/RegistrationModal";
 import { useCallback, useEffect } from "react";
 import AppointmentModal from "../AppointmentModal/AppointmentModal";
 import LogoutModal from "../LogoutModal/LogoutModal";
+import PleaseLoginModal from "../PleaseLoginModal/PleaseLoginModal";
 
 const modalRoot = document.getElementById("portal");
 
 const Modal = () => {
   const dispatch = useDispatch();
   const loginModal = useSelector(selectLoginModal);
+  const pleaseLoginModal = useSelector(selectPleaseLoginModal);
   const registrationModal = useSelector(selectRegistrationModal);
   const appointmentModal = useSelector(selectAppointmentModal);
   const logoutModal = useSelector(selectLogoutModal);
@@ -72,6 +75,7 @@ const Modal = () => {
         <Fade in={isModalOpen} timeout={600}>
           <ModalStyled>
             {loginModal && <LoginModal />}
+            {pleaseLoginModal && <PleaseLoginModal />}
             {registrationModal && <RegistrationModal />}
             {appointmentModal && <AppointmentModal />}
             {logoutModal && <LogoutModal />}

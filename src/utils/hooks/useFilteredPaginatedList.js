@@ -1,12 +1,17 @@
+// hooks/useFilteredPaginatedList.js
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFilteredNannies } from "../../redux/nanniesSlice";
-import { selectFilter, selectFilteredNannies } from "../../redux/selectors";
+import { setFilteredItems } from "../../redux/nanniesSlice";
+import {
+  selectFilter,
+  selectFilteredFavorites,
+  selectFilteredNannies,
+} from "../../redux/selectors";
 
 const LIMIT = 3;
 
-const sortNannies = (nannies, filter) => {
-  return [...nannies].sort((a, b) => {
+const sortItems = (items, filter) => {
+  return [...items].sort((a, b) => {
     switch (filter) {
       case "a-z":
         return a.name.localeCompare(b.name);
@@ -26,19 +31,24 @@ const sortNannies = (nannies, filter) => {
   });
 };
 
-const useFilteredPaginatedList = (items) => {
+const useFilteredPaginatedList = (items, filterType) => {
   const dispatch = useDispatch();
-  const filter = useSelector(selectFilter);
+  const filter = useSelector((state) => selectFilter(state)[filterType]);
   const [page, setPage] = useState(1);
-  const filteredNannies = useSelector(selectFilteredNannies);
 
   useEffect(() => {
-    const sortedItems = sortNannies(items, filter);
-    dispatch(setFilteredNannies(sortedItems));
-  }, [dispatch, filter, items]);
+    const sortedItems = sortItems(items, filter);
+    dispatch(setFilteredItems({ type: filterType, items: sortedItems }));
+  }, [dispatch, filter, items, filterType]);
 
-  const displayedItems = filteredNannies.slice(0, page * LIMIT);
-  const haveMoreItems = page * LIMIT < filteredNannies.length;
+  const filteredItems = useSelector((state) =>
+    filterType === "nannies"
+      ? selectFilteredNannies(state)
+      : selectFilteredFavorites(state)
+  );
+
+  const displayedItems = filteredItems.slice(0, page * LIMIT);
+  const haveMoreItems = page * LIMIT < filteredItems.length;
 
   const onLoadMoreClick = () => {
     setPage((prevPage) => prevPage + 1);

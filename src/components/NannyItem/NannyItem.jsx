@@ -1,4 +1,5 @@
 import {
+  BtnBox,
   CardContent,
   CardHeaderItem,
   CardHeaderList,
@@ -6,6 +7,7 @@ import {
   CardHeaderWrap,
   CardSvg,
   HeartBtn,
+  MakeAppointmentBtn,
   NannyCardItem,
   NannyDataItem,
   NannyDataList,
@@ -23,6 +25,7 @@ import NannyItemReviews from "../NannytemReviews/NannyItemReviews";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFavorites } from "../../redux/selectors";
 import {
+  changeAppointmentModal,
   changeIsModalOpen,
   changePleaseLoginModal,
 } from "../../redux/modalsSlice";
@@ -54,12 +57,6 @@ const NannyItem = ({ nanny }) => {
   const dispatch = useDispatch();
   const { isAuth, currentUser } = useAuth();
 
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     dispatch(fetchUserFavoritesThunk(currentUser.id));
-  //   }
-  // }, [currentUser, dispatch]);
-
   const isNannyFavorite = () => {
     return favorites.some((fav) => fav.id === id);
   };
@@ -90,6 +87,11 @@ const NannyItem = ({ nanny }) => {
 
   const onReadMoreClick = () => {
     setIsReviewVisible(!isReviewVisible);
+  };
+
+  const onMakeAppointmentClick = () => {
+    dispatch(changeIsModalOpen(true));
+    dispatch(changeAppointmentModal(true));
   };
 
   const calculateAge = (birthday) => {
@@ -173,11 +175,22 @@ const NannyItem = ({ nanny }) => {
             </NannyDataItem>
           </NannyDataList>
           <NannyDescription>{about}</NannyDescription>
-          {isReviewVisible ? (
-            <NannyItemReviews reviews={reviews} />
-          ) : (
-            <ReadMoreBtn onClick={onReadMoreClick}>Read more</ReadMoreBtn>
-          )}
+          {isReviewVisible && <NannyItemReviews reviews={reviews} />}
+          <BtnBox>
+            {isReviewVisible ? (
+              <>
+                <MakeAppointmentBtn
+                  type="button"
+                  onClick={onMakeAppointmentClick}
+                >
+                  Make an appointment
+                </MakeAppointmentBtn>
+                <ReadMoreBtn onClick={onReadMoreClick}>Show less</ReadMoreBtn>
+              </>
+            ) : (
+              <ReadMoreBtn onClick={onReadMoreClick}>Read more</ReadMoreBtn>
+            )}
+          </BtnBox>
         </CardContent>
       </NannyCardItem>
     </>

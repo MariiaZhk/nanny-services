@@ -15,13 +15,13 @@ import useFilteredPaginatedList from "../../utils/hooks/useFilteredPaginatedList
 const Favorites = () => {
   const favorites = useSelector(selectFavorites);
   const { displayedItems, haveMoreItems, onLoadMoreClick } =
-    useFilteredPaginatedList(favorites);
+    useFilteredPaginatedList(favorites, "favorites");
 
   return (
     <FavoritesSection>
       {favorites?.length > 0 ? (
         <>
-          <Filters />
+          <Filters filterType="favorites" />
           <NanniesContainer>
             <NanniesListStyled>
               {displayedItems?.map((nanny) => (

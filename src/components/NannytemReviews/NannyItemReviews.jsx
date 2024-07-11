@@ -1,12 +1,7 @@
 import sprite from "../../assets/sprite.svg";
-import {
-  changeAppointmentModal,
-  changeIsModalOpen,
-} from "../../redux/modalsSlice";
-import { useDispatch } from "react-redux";
+
 import { v4 as uuidv4 } from "uuid";
 import {
-  MakeAppointmentBtn,
   Rating,
   ReviewComment,
   ReviewHiddenList,
@@ -18,13 +13,6 @@ import {
 import { CardSvg } from "../NannyItem/NannyItem.styled";
 
 const NannyItemReviews = ({ reviews }) => {
-  const dispatch = useDispatch();
-
-  const onMakeAppointmentClick = () => {
-    dispatch(changeIsModalOpen(true));
-    dispatch(changeAppointmentModal(true));
-  };
-
   return (
     <>
       <ReviewHiddenList>
@@ -46,9 +34,6 @@ const NannyItemReviews = ({ reviews }) => {
           </li>
         ))}
       </ReviewHiddenList>
-      <MakeAppointmentBtn type="button" onClick={onMakeAppointmentClick}>
-        Make an appointment
-      </MakeAppointmentBtn>
     </>
   );
 };

@@ -3,8 +3,12 @@ import { fetchNanniesThunk } from "./operations";
 
 const initialState = {
   nannies: [],
-  filter: null,
+  filter: {
+    nannies: "all",
+    favorites: "all",
+  },
   filteredNannies: [],
+  filteredFavorites: [],
 };
 
 const nanniesSlice = createSlice({
@@ -13,13 +17,17 @@ const nanniesSlice = createSlice({
 
   reducers: {
     setFilterAction: (state, { payload }) => {
-      state.filter = payload;
+      state.filter[payload.type] = payload.value;
     },
-    setFilteredNannies: (state, { payload }) => {
-      state.filteredNannies = payload;
+    setFilteredItems: (state, { payload }) => {
+      state[
+        payload.type === "nannies" ? "filteredNannies" : "filteredFavorites"
+      ] = payload.items;
     },
     setFilterDelete: (state) => {
-      state.filter = null;
+      state.filter = initialState.filter;
+      state.filteredNannies = [];
+      state.filteredFavorites = [];
     },
   },
 
@@ -30,7 +38,7 @@ const nanniesSlice = createSlice({
   },
 });
 
-export const { setFilterAction, setFilteredNannies, setFilterDelete } =
+export const { setFilterAction, setFilteredItems, setFilterDelete } =
   nanniesSlice.actions;
 
 export const nanniesReducer = nanniesSlice.reducer;

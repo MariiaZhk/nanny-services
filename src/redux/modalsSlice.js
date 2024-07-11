@@ -36,6 +36,7 @@ export const modalsSlice = createSlice({
       state.registrationModal = payload;
       state.appointmentModal = payload;
       state.logoutModal = payload;
+      state.pleaseLoginModal = payload;
     },
   },
 });

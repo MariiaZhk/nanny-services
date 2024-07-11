@@ -138,6 +138,14 @@ export const NannyDataItem = styled.li`
 export const NannyDescription = styled.p`
   font-size: 16px;
 `;
+export const ReviewBtnBox = styled.div`
+  display: flex;
+`;
+
+export const BtnBox = styled.div`
+  display: flex;
+  gap: 20px;
+`;
 
 export const ReadMoreBtn = styled.button`
   display: flex;
@@ -151,4 +159,23 @@ export const ReadMoreBtn = styled.button`
   text-decoration-skip-ink: none;
   color: var(--text-black);
   background-color: transparent;
+  &:hover {
+    color: var(--red);
+  }
+`;
+export const MakeAppointmentBtn = styled.button`
+  max-width: 215px;
+  padding: 14px 28px;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  border-radius: 30px;
+  background-color: var(--red);
+  border: none;
+
+  &:hover {
+    color: var(--red);
+    background-color: var(--pink);
+  }
 `;

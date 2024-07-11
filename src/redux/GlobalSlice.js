@@ -2,8 +2,8 @@ import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   fetchNanniesThunk,
   fetchUserFavoritesThunk,
-  setUserFavoritesThunk,
-  removeFavoriteByIdThunk,
+  // setUserFavoritesThunk,
+  // removeFavoriteByIdThunk,
 } from "./operations";
 
 const initialState = {

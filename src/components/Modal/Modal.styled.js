@@ -66,7 +66,7 @@ export const ModalTitle = styled.h2`
 `;
 export const ModalText = styled.p`
   max-width: 438px;
-  margin-bottom: 40px;
+  margin-bottom: ${(props) => props.size || "40px"};
   color: var(--text-grey);
 `;
 export const ModalForm = styled.form`
@@ -132,7 +132,7 @@ export const ModalActionTypeBtn = styled.button`
   white-space: nowrap;
 
   &:hover {
-    background-color: var(--white);
+    background-color: var(--pink);
     color: var(--red);
   }
 `;
@@ -147,4 +147,12 @@ export const ModalClockBtn = styled.div`
   height: 20px;
   width: 20px;
   z-index: 99;
+`;
+
+export const StyledSpan = styled.span`
+  color: var(--red);
+  cursor: pointer;
+  &:hover {
+    background-color: var(--pink);
+  }
 `;

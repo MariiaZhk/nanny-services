@@ -20,6 +20,7 @@ const authSlice = createSlice({
     },
     logout: (state) => {
       state.user = null;
+      state.favorites = null;
     },
   },
   extraReducers: (builder) => {

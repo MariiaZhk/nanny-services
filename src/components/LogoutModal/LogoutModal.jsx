@@ -9,6 +9,7 @@ import { logout } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import { closeModals } from "../../redux/modalsSlice";
 import { useDispatch } from "react-redux";
+import { setFilterDelete } from "../../redux/nanniesSlice";
 
 const LogoutModal = () => {
   const auth = getAuth();
@@ -23,6 +24,7 @@ const LogoutModal = () => {
     signOut(auth)
       .then(() => {
         dispatch(logout());
+        dispatch(setFilterDelete());
         dispatch(closeModals());
         navigate("/", { replace: true });
       })

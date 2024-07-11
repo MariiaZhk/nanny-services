@@ -15,13 +15,13 @@ import NannyItem from "../NannyItem/NannyItem";
 import useFilteredPaginatedList from "../../utils/hooks/useFilteredPaginatedList";
 import useAuth from "../../utils/hooks/useAuth";
 
-const NanniesList = () => {
+const NanniesList = ({ filterType }) => {
   const dispatch = useDispatch();
   const nannies = useSelector(selectNannies);
   const { currentUser } = useAuth();
 
   const { displayedItems, haveMoreItems, onLoadMoreClick } =
-    useFilteredPaginatedList(nannies);
+    useFilteredPaginatedList(nannies, filterType);
 
   useEffect(() => {
     dispatch(fetchNanniesThunk());

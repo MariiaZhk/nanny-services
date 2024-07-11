@@ -14,7 +14,12 @@ import { useForm } from "react-hook-form";
 import sprite from "../../assets/sprite.svg";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/authSlice";
-import { closeModals } from "../../redux/modalsSlice";
+import {
+  changeLoginModal,
+  changePleaseLoginModal,
+  changeRegistrationModal,
+  closeModals,
+} from "../../redux/modalsSlice";
 import { toast } from "react-toastify";
 
 const LoginModal = () => {
@@ -60,6 +65,11 @@ const LoginModal = () => {
     }
   };
 
+  const onBtnClick = () => {
+    dispatch(changeLoginModal(false));
+    dispatch(changeRegistrationModal(true));
+  };
+
   return (
     <>
       <ModalTitle>Log In</ModalTitle>
@@ -96,6 +106,10 @@ const LoginModal = () => {
           />
         </ModalLabel>
         <ModalActionTypeBtn type="submit">Log In</ModalActionTypeBtn>
+        <ModalText>
+          If you don't have an account yet, please{" "}
+          <span onClick={onBtnClick}>register</span>.
+        </ModalText>
       </ModalForm>
     </>
   );
