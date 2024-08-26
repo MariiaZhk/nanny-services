@@ -9,6 +9,7 @@ import {
   ModalSvg,
   ModalText,
   ModalTitle,
+  StyledSpan,
 } from "../Modal/Modal.styled";
 import { useForm } from "react-hook-form";
 import sprite from "../../assets/sprite.svg";
@@ -108,7 +109,7 @@ const LoginModal = () => {
         <ModalActionTypeBtn type="submit">Log In</ModalActionTypeBtn>
         <ModalText>
           If you don't have an account yet, please{" "}
-          <span onClick={onBtnClick}>register</span>.
+          <StyledSpan onClick={onBtnClick}>register</StyledSpan>.
         </ModalText>
       </ModalForm>
     </>

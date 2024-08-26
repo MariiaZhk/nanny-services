@@ -22,7 +22,7 @@ export const ModalStyled = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   padding: 64px;
   z-index: 200;
   border-radius: 30px;
@@ -96,13 +96,31 @@ export const ModalInput = styled.input`
   }
 `;
 
-export const ModalInputsWrap = styled.div`
+export const ModalTextarea = styled.textarea`
   width: 100%;
+  height: auto;
+  padding: 16px 18px;
+  border: 1px solid var(--inputs-border);
+  border-radius: 12px;
+  outline: none;
+  resize: vertical;
+
+  &::placeholder {
+    color: var(--text-black);
+  }
+
+  &:hover {
+    border: 1px solid var(--text-black);
+  }
+`;
+
+export const ModalInputsWrap = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  input {
-    width: 100%;
+  & > * {
+    flex-grow: 1;
+    flex-basis: 50%;
   }
 `;
 
@@ -152,6 +170,7 @@ export const ModalClockBtn = styled.div`
 export const StyledSpan = styled.span`
   color: var(--red);
   cursor: pointer;
+  text-transform: uppercase;
   &:hover {
     background-color: var(--pink);
   }
