@@ -175,3 +175,12 @@ export const StyledSpan = styled.span`
     background-color: var(--pink);
   }
 `;
+
+export const ErrorMessage = styled.p`
+  color: var(--red);
+  position: absolute;
+  bottom: -16px;
+  padding: 0px 18px;
+  font-size: 12px;
+  line-height: 1.3;
+`;

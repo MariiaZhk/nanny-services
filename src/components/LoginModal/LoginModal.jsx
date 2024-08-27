@@ -109,7 +109,7 @@ const LoginModal = () => {
         <ModalActionTypeBtn type="submit">Log In</ModalActionTypeBtn>
         <ModalText>
           If you don't have an account yet, please{" "}
-          <StyledSpan onClick={onBtnClick}>register</StyledSpan>.
+          <StyledSpan onClick={onBtnClick}>register</StyledSpan>
         </ModalText>
       </ModalForm>
     </>

@@ -77,7 +77,7 @@ const Modal = () => {
             {loginModal && <LoginModal />}
             {pleaseLoginModal && <PleaseLoginModal />}
             {registrationModal && <RegistrationModal />}
-            {appointmentModal && <AppointmentModal />}
+            {appointmentModal && <AppointmentModal closeModal={closeModal} />}
             {logoutModal && <LogoutModal />}
             <BtnClose type="button" onClick={closeModal}>
               <ModalSvg>
