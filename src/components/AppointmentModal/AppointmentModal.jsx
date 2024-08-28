@@ -47,6 +47,7 @@ const AppointmentModal = ({ closeModal }) => {
           <ModalLabel htmlFor="address">
             <ModalInput
               {...register("address")}
+              id="address"
               type="text"
               name="address"
               placeholder="Address"
@@ -60,6 +61,7 @@ const AppointmentModal = ({ closeModal }) => {
           <ModalLabel htmlFor="tel">
             <ModalInput
               {...register("tel")}
+              id="tel"
               type="text"
               name="tel"
               placeholder="+380"
@@ -73,6 +75,7 @@ const AppointmentModal = ({ closeModal }) => {
           <ModalLabel htmlFor="child_age">
             <ModalInput
               {...register("child_age")}
+              id="child_age"
               type="text"
               name="child_age"
               placeholder="Child's age"
@@ -86,6 +89,7 @@ const AppointmentModal = ({ closeModal }) => {
           <ModalLabel htmlFor="time">
             <ModalInput
               {...register("time")}
+              id="time"
               type="text"
               name="time"
               placeholder="00:00"
@@ -103,6 +107,7 @@ const AppointmentModal = ({ closeModal }) => {
         <ModalLabel htmlFor="email">
           <ModalInput
             {...register("email")}
+            id="email"
             type="text"
             name="email"
             placeholder="Email"
@@ -114,6 +119,7 @@ const AppointmentModal = ({ closeModal }) => {
         <ModalLabel htmlFor="parent_name">
           <ModalInput
             {...register("parent_name")}
+            id="parent_name"
             type="text"
             name="parent_name"
             placeholder="Father's or mother's name"
@@ -124,9 +130,10 @@ const AppointmentModal = ({ closeModal }) => {
             <ErrorMessage>{errors.parent_name.message}</ErrorMessage>
           )}
         </ModalLabel>
-        <ModalLabel>
+        <ModalLabel htmlFor="comment">
           <ModalTextarea
             {...register("comment")}
+            id="comment"
             name="comment"
             placeholder="Comment"
             onFocus={(e) => (e.target.placeholder = "")}

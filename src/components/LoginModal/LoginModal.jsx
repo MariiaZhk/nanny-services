@@ -17,7 +17,6 @@ import { useDispatch } from "react-redux";
 import { login } from "../../redux/authSlice";
 import {
   changeLoginModal,
-  changePleaseLoginModal,
   changeRegistrationModal,
   closeModals,
 } from "../../redux/modalsSlice";
