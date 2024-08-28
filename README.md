@@ -21,7 +21,7 @@ _Home page_
 _Nannies catalog page_
 ![Favorites page](./src/assets/appScreenshots/FavoritesPage.png)
 _Favorites page_
-![Appointment form](./src/assets/screenshots/Appointment.png)
+![Appointment form](./src/assets/appScreenshots/AppointmentModal.png)
 _Appointment form for booking nannies_
 
 ## Features
