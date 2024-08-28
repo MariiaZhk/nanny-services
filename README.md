@@ -45,10 +45,8 @@ _Appointment form for booking nannies_
 
 This project repository includes essential documents and resources to guide the development process:
 
-- **Project Layout**:
-  [Project Mockup on Figma](https://www.figma.com/file/u36ajEOsnwio2GDGiabVPD/Nanny-Sevices?type=design&node-id=0-1&mode=design&t=01CgTCIu4cCSpGmU-0): View the visual design and layout of the application.
-- **Project Requirements**:
-  - [Project Requirements](https://docs.google.com/document/d/19ugM1gvOw81nCyALr4EZs3dmv6OfJm94VjupcytbnJY/edit): Review the technical specifications and functional requirements for the project.
+- [Project Mockup on Figma](https://www.figma.com/file/u36ajEOsnwio2GDGiabVPD/Nanny-Sevices?type=design&node-id=0-1&mode=design&t=01CgTCIu4cCSpGmU-0): View the visual design and layout of the application.
+- [Project Requirements](https://docs.google.com/document/d/19ugM1gvOw81nCyALr4EZs3dmv6OfJm94VjupcytbnJY/edit): Review the technical specifications and functional requirements for the project.
 
 ## Contributing
 
