@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { toast } from "react-toastify";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
+  ErrorMessage,
   ModalActionTypeBtn,
   ModalEyeBtn,
   ModalForm,
@@ -20,13 +23,19 @@ import {
   changeRegistrationModal,
   closeModals,
 } from "../../redux/modalsSlice";
-import { toast } from "react-toastify";
+import { baseAuthValidationSchema } from "../../utils/schemas/authSchema";
 
 const LoginModal = () => {
-  const { register, handleSubmit } = useForm();
   const [eyePass, setEyePass] = useState(false);
-  const [error, setError] = useState(null);
   const dispatch = useDispatch();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(baseAuthValidationSchema),
+  });
 
   const showEyePass = () => {
     setEyePass(!eyePass);
@@ -56,11 +65,12 @@ const LoginModal = () => {
         error.code === "auth/user-not-found" ||
         error.code === "auth/invalid-credential"
       ) {
-        setError(
+        toast.info(
           "Email or password is incorrect. Check your credentials or sign up."
         );
       } else {
-        setError(error.message);
+        console.error(error.message);
+        toast.error("An error occurred during login. Please try again.");
       }
     }
   };
@@ -82,10 +92,11 @@ const LoginModal = () => {
           <ModalInput
             {...register("email")}
             type="text"
-            placeholder="Email"
             name="email"
             id="email"
+            placeholder="Email"
           />
+          {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
         </ModalLabel>
         <ModalLabel htmlFor="password">
           <ModalEyeBtn type="button" onClick={showEyePass}>
@@ -104,6 +115,9 @@ const LoginModal = () => {
             name="password"
             id="password"
           />
+          {errors.password && (
+            <ErrorMessage>{errors.password.message}</ErrorMessage>
+          )}
         </ModalLabel>
         <ModalActionTypeBtn type="submit">Log In</ModalActionTypeBtn>
         <ModalText>

@@ -1,5 +1,19 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import { registration } from "../../redux/authSlice";
+import { closeModals } from "../../redux/modalsSlice";
+import { toast } from "react-toastify";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { registrationValidationSchema } from "../../utils/schemas/authSchema";
+import sprite from "../../assets/sprite.svg";
 import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  updateProfile,
+} from "firebase/auth";
+import {
+  ErrorMessage,
   ModalActionTypeBtn,
   ModalEyeBtn,
   ModalForm,
@@ -9,23 +23,18 @@ import {
   ModalText,
   ModalTitle,
 } from "../Modal/Modal.styled";
-import { useForm } from "react-hook-form";
-import sprite from "../../assets/sprite.svg";
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  updateProfile,
-} from "firebase/auth";
-import { useDispatch } from "react-redux";
-import { registration } from "../../redux/authSlice";
-import { closeModals } from "../../redux/modalsSlice";
-import { toast } from "react-toastify";
 
 const RegistrationModal = () => {
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
   const [eyePass, setEyePass] = useState(false);
-  const [error, setError] = useState(null);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(registrationValidationSchema),
+  });
 
   const showEyePass = () => {
     setEyePass(!eyePass);
@@ -57,9 +66,9 @@ const RegistrationModal = () => {
     } catch (error) {
       console.error("Error during registration:", error);
       if (error.code === "auth/email-already-in-use") {
-        setError("User with this email already exists.");
+        toast.info("User with this email already exists. Please, login.");
       } else {
-        setError(error.message);
+        toast.error("An error occurred during registration. Please try again.");
       }
     }
   };
@@ -76,19 +85,21 @@ const RegistrationModal = () => {
           <ModalInput
             {...register("name")}
             type="text"
-            placeholder="Name"
             name="name"
             id="name"
+            placeholder="Name"
           />
+          {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
         </ModalLabel>
         <ModalLabel htmlFor="email">
           <ModalInput
             {...register("email")}
             type="text"
-            placeholder="Email"
             name="email"
             id="email"
+            placeholder="Email"
           />
+          {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
         </ModalLabel>
         <ModalLabel htmlFor="password">
           <ModalEyeBtn type="button" onClick={showEyePass}>
@@ -103,10 +114,13 @@ const RegistrationModal = () => {
           <ModalInput
             {...register("password")}
             type={eyePass ? "text" : "password"}
-            placeholder="Password"
             name="password"
             id="password"
+            placeholder="Password"
           />
+          {errors.password && (
+            <ErrorMessage>{errors.password.message}</ErrorMessage>
+          )}
         </ModalLabel>
         <ModalActionTypeBtn type="submit">Sign Up</ModalActionTypeBtn>
       </ModalForm>

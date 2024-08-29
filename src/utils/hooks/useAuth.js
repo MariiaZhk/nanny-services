@@ -7,7 +7,7 @@ const useAuth = () => {
   return {
     currentUser,
     name: currentUser?.name,
-    isAuth: !!currentUser,
+    isAuth: !!currentUser?.email,
     email: currentUser?.email,
   };
 };

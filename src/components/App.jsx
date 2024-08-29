@@ -14,7 +14,6 @@ function App() {
   return (
     <>
       {isLoading && <Loader />}
-      {/* <Loader visible={isLoading} /> */}
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

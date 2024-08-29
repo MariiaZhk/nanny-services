@@ -2,6 +2,8 @@ import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   fetchNanniesThunk,
   fetchUserFavoritesThunk,
+  removeFavoriteByIdThunk,
+  setUserFavoritesThunk,
   // setUserFavoritesThunk,
   // removeFavoriteByIdThunk,
 } from "./operations";
@@ -36,9 +38,9 @@ const globalSlice = createSlice({
         isAnyOf(
           fetchNanniesThunk.fulfilled,
           fetchNanniesThunk.fulfilled,
-          fetchUserFavoritesThunk.fulfilled
-          // setUserFavoritesThunk.fulfilled,
-          // removeFavoriteByIdThunk.fulfilled
+          fetchUserFavoritesThunk.fulfilled,
+          setUserFavoritesThunk.fulfilled,
+          removeFavoriteByIdThunk.fulfilled
         ),
         handleFulfilled
       )
@@ -46,9 +48,9 @@ const globalSlice = createSlice({
         isAnyOf(
           fetchNanniesThunk.pending,
           fetchNanniesThunk.pending,
-          fetchUserFavoritesThunk.pending
-          // setUserFavoritesThunk.pending
-          // removeFavoriteByIdThunk.pending
+          fetchUserFavoritesThunk.pending,
+          setUserFavoritesThunk.pending,
+          removeFavoriteByIdThunk.pending
         ),
         handlePending
       )
@@ -56,14 +58,13 @@ const globalSlice = createSlice({
         isAnyOf(
           fetchNanniesThunk.rejected,
           fetchNanniesThunk.rejected,
-          fetchUserFavoritesThunk.rejected
-          // setUserFavoritesThunk.rejected,
-          // removeFavoriteByIdThunk.rejected
+          fetchUserFavoritesThunk.rejected,
+          setUserFavoritesThunk.rejected,
+          removeFavoriteByIdThunk.rejected
         ),
         handleRejected
       );
   },
 });
 
-// export const {} = globalSlice.actions;
 export const globalReducer = globalSlice.reducer;
