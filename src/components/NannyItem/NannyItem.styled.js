@@ -7,6 +7,13 @@ export const NannyCardItem = styled.li`
   padding: 24px;
   border-radius: 24px;
   background-color: var(--background-hero);
+  @media (max-width: 1024px) {
+    padding: 18px;
+    border-radius: 18px;
+  }
+  @media (max-width: 768px) {
+    position: relative;
+  }
 `;
 
 export const PhotoContainer = styled.div`
@@ -30,6 +37,13 @@ export const PhotoContainer = styled.div`
     border-radius: 50%;
     background-color: var(--text-price);
   }
+  margin-right: 24px;
+  @media (max-width: 1024px) {
+    border-radius: 24px;
+  }
+  @media (max-width: 768px) {
+    margin-right: 0;
+  }
 `;
 
 export const PhotoWrap = styled.div`
@@ -49,7 +63,23 @@ export const CardHeaderWrap = styled.div`
   display: flex;
   justify-content: space-between;
   max-width: 992px;
-  margin-bottom: 8px;
+  margin-bottom: 24px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 14px;
+    align-items: center;
+    gap: 18px;
+  }
+  @media (max-width: 530px) {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+`;
+
+export const NannyItemTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 export const NannyText = styled.p`
@@ -57,10 +87,16 @@ export const NannyText = styled.p`
   font-weight: 500;
   line-height: 1.5;
   color: var(--text-filter);
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export const CardHeaderList = styled.ul`
   display: flex;
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const CardHeaderItem = styled.li`
@@ -86,6 +122,9 @@ export const CardHeaderItem = styled.li`
   &:last-child {
     margin-left: 48px;
   }
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 export const CardHeaderText = styled.p`
   font-weight: 500;
@@ -98,6 +137,12 @@ export const PriceSpan = styled.span`
 export const HeartBtn = styled.button`
   border: none;
   background-color: transparent;
+
+  @media (max-width: 768px) {
+    position: absolute;
+    top: 16px;
+    right: 10px;
+  }
 `;
 
 export const CardSvg = styled.svg`
@@ -105,19 +150,28 @@ export const CardSvg = styled.svg`
   height: ${(props) => props.size || "16px"};
   stroke: ${(props) => props.stroke || "var(--text-black)"};
   fill: ${(props) => props.fill || "transparent"};
+  &:hover {
+    stroke: var(--red);
+    transform: scale(1.1);
+  }
 `;
 export const NannyName = styled.h3`
-  margin-bottom: 24px;
   font-weight: 500;
   font-size: 24px;
   line-height: 1;
   color: var(--text-black);
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 export const NannyDataList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 24px;
+  @media (max-width: 768px) {
+    margin-bottom: 16px;
+  }
 `;
 
 export const NannyDataItem = styled.li`
@@ -127,6 +181,9 @@ export const NannyDataItem = styled.li`
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 
   span {
     color: var(--text-black);
@@ -137,6 +194,9 @@ export const NannyDataItem = styled.li`
 `;
 export const NannyDescription = styled.p`
   font-size: 16px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 export const ReviewBtnBox = styled.div`
   display: flex;

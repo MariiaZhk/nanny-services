@@ -18,8 +18,9 @@ import {
 } from "./AuthBlock.styled";
 import useAuth from "../../../utils/hooks/useAuth";
 
-const AuthUserBlock = ({ main }) => {
+const AuthUserBlock = () => {
   const { name, isAuth } = useAuth();
+
   const dispatch = useDispatch();
 
   const onRegistrationClick = () => {
@@ -38,7 +39,7 @@ const AuthUserBlock = ({ main }) => {
   };
 
   return (
-    <StyledAuthBlock $main={main}>
+    <StyledAuthBlock>
       {!isAuth ? (
         <AuthBtnWrap>
           <AuthBtn type="button" onClick={onLoginClick}>

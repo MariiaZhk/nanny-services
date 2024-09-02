@@ -2,22 +2,23 @@ import { useForm } from "react-hook-form";
 import {
   ErrorMessage,
   ModalActionTypeBtn,
-  ModalClockBtn,
   ModalForm,
   ModalInput,
   ModalInputsWrap,
   ModalLabel,
-  ModalSvg,
   ModalText,
   ModalTextarea,
   ModalTitle,
+  SuccessMessage,
 } from "../Modal/Modal.styled";
-import sprite from "../../assets/sprite.svg";
 import { useState } from "react";
 import { appointmentValidationSchema } from "../../utils/schemas/appointmentSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useDispatch } from "react-redux";
+import { closeModals } from "../../redux/modalsSlice";
 
-const AppointmentModal = ({ closeModal }) => {
+const AppointmentModal = () => {
+  const dispatch = useDispatch();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const {
     register,
@@ -29,8 +30,8 @@ const AppointmentModal = ({ closeModal }) => {
   const onSubmit = (data) => {
     setIsSubmitted(true);
     setTimeout(() => {
-      closeModal();
-    }, 900);
+      dispatch(closeModals(false));
+    }, 1500);
     console.log(data);
   };
   return (
@@ -86,21 +87,18 @@ const AppointmentModal = ({ closeModal }) => {
               <ErrorMessage>{errors.child_age.message}</ErrorMessage>
             )}
           </ModalLabel>
-          <ModalLabel htmlFor="time">
+          <ModalLabel htmlFor="time" style={{ position: "relative" }}>
             <ModalInput
               {...register("time")}
               id="time"
-              type="text"
+              type="time"
               name="time"
-              placeholder="00:00"
-              onFocus={(e) => (e.target.placeholder = "")}
-              onBlur={(e) => (e.target.placeholder = "00:00")}
+              defaultValue="00:00"
+              step="1800"
+              onFocus={(e) => (e.target.value = "")}
+              onBlur={(e) => (e.target.value = "00:00")}
             />
-            <ModalClockBtn>
-              <ModalSvg width="20px" height="20px">
-                <use href={`${sprite}#icon-clock`} />
-              </ModalSvg>
-            </ModalClockBtn>
+
             {errors.time && <ErrorMessage>{errors.time.message}</ErrorMessage>}
           </ModalLabel>
         </ModalInputsWrap>
@@ -145,7 +143,9 @@ const AppointmentModal = ({ closeModal }) => {
         </ModalLabel>
 
         {isSubmitted ? (
-          <p>Your appointment application has been successfully submitted.</p>
+          <SuccessMessage>
+            Your appointment application has been successfully submitted!
+          </SuccessMessage>
         ) : (
           <ModalActionTypeBtn type="submit">Sent</ModalActionTypeBtn>
         )}

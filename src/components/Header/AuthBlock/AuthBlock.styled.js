@@ -3,6 +3,17 @@ import styled from "styled-components";
 export const StyledAuthBlock = styled.div`
   display: flex;
   gap: 8px;
+  @media (max-width: 1024px) {
+    position: relative;
+    &::after {
+      content: "";
+      bottom: -50px;
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background-color: var(--white);
+    }
+  }
 `;
 
 export const UserBlock = styled.div`
@@ -10,6 +21,10 @@ export const UserBlock = styled.div`
   align-items: center;
   gap: 24px;
   position: relative;
+
+  @media (max-width: 768px) {
+    gap: 14px;
+  }
 `;
 export const UserInfo = styled.div`
   display: flex;
@@ -20,6 +35,9 @@ export const UserInfo = styled.div`
     font-size: 18px;
     line-height: 111%;
     letter-spacing: -0.01em;
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
   }
 `;
 export const IconWrap = styled.div`
@@ -31,17 +49,33 @@ export const IconWrap = styled.div`
   justify-content: center;
   border-radius: 10px;
   background-color: var(--white);
+  @media (max-width: 768px) {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 export const UserSvg = styled.svg`
   width: 24px;
   height: 24px;
   fill: var(--background-hero);
+  @media (max-width: 768px) {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 export const AuthBtnWrap = styled.div`
   display: flex;
   gap: 8px;
+
+  @media (max-width: 1024px) {
+    gap: 30px;
+  }
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
 `;
 
 export const AuthBtn = styled.button`
@@ -55,9 +89,12 @@ export const AuthBtn = styled.button`
   letter-spacing: -0.01em;
   color: inherit;
   outline: none;
-
   &:hover {
     background-color: var(--white);
     color: var(--red);
+  }
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding-inline: 14px;
   }
 `;

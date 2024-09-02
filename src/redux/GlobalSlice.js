@@ -4,8 +4,6 @@ import {
   fetchUserFavoritesThunk,
   removeFavoriteByIdThunk,
   setUserFavoritesThunk,
-  // setUserFavoritesThunk,
-  // removeFavoriteByIdThunk,
 } from "./operations";
 
 const initialState = {

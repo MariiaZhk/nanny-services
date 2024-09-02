@@ -23,7 +23,6 @@ const Filters = ({ filterType }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState();
   const filter = useSelector((state) => selectFilter(state)[filterType]);
 
-  // const defaultOption = options.find((option) => option.value === "all");
   useEffect(() => {
     setValue("category", filter);
   }, [filter, setValue]);
@@ -44,7 +43,6 @@ const Filters = ({ filterType }) => {
             <Select
               {...field}
               options={options}
-              // defaultValue={defaultOption}
               styles={selectStyle(isDropdownOpen)}
               onMenuOpen={() => {
                 setIsDropdownOpen(true);

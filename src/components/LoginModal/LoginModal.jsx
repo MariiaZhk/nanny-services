@@ -75,7 +75,7 @@ const LoginModal = () => {
     }
   };
 
-  const onBtnClick = () => {
+  const onRegisterBtnClick = () => {
     dispatch(changeLoginModal(false));
     dispatch(changeRegistrationModal(true));
   };
@@ -95,6 +95,8 @@ const LoginModal = () => {
             name="email"
             id="email"
             placeholder="Email"
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) => (e.target.placeholder = "Email")}
           />
           {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
         </ModalLabel>
@@ -111,9 +113,11 @@ const LoginModal = () => {
           <ModalInput
             {...register("password")}
             type={eyePass ? "text" : "password"}
-            placeholder="Password"
             name="password"
             id="password"
+            placeholder="Password"
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) => (e.target.placeholder = "Password")}
           />
           {errors.password && (
             <ErrorMessage>{errors.password.message}</ErrorMessage>
@@ -122,7 +126,7 @@ const LoginModal = () => {
         <ModalActionTypeBtn type="submit">Log In</ModalActionTypeBtn>
         <ModalText>
           If you don't have an account yet, please{" "}
-          <StyledSpan onClick={onBtnClick}>register</StyledSpan>
+          <StyledSpan onClick={onRegisterBtnClick}>register</StyledSpan>
         </ModalText>
       </ModalForm>
     </>

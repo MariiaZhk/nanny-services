@@ -34,9 +34,9 @@ export const ModalStyled = styled.div`
 `;
 
 export const ModalSvg = styled.svg`
-  width: 20px;
-  height: 20px;
-  stroke: var(--text-black);
+  width: ${(props) => props.size || "20px"};
+  height: ${(props) => props.size || "20px"};
+  stroke: ${(props) => props.color || "var(--text - black)"};
   fill: transparent;
 `;
 
@@ -46,8 +46,8 @@ export const BtnClose = styled.button`
   top: ${(props) => props.size || "20px"};
   border: none;
   background-color: transparent;
-  width: 32px;
-  height: 32px;
+  width: ${(props) => props.width || "32px"};
+  height: ${(props) => props.height || "32px"};
   padding: 0;
   transition: scale 300ms ease-in-out;
 
@@ -183,4 +183,10 @@ export const ErrorMessage = styled.p`
   padding: 0px 18px;
   font-size: 12px;
   line-height: 1.3;
+`;
+
+export const SuccessMessage = styled.p`
+  color: var(--red);
+  font-size: 26px;
+  text-align: center;
 `;

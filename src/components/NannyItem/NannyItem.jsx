@@ -12,6 +12,7 @@ import {
   NannyDataItem,
   NannyDataList,
   NannyDescription,
+  NannyItemTitle,
   NannyName,
   NannyText,
   PhotoContainer,
@@ -34,6 +35,7 @@ import {
   setUserFavoritesThunk,
 } from "../../redux/operations";
 import useAuth from "../../utils/hooks/useAuth";
+import { useMediaQuery } from "react-responsive";
 
 const NannyItem = ({ nanny }) => {
   const {
@@ -56,6 +58,7 @@ const NannyItem = ({ nanny }) => {
   const favorites = useSelector(selectFavorites) || [];
   const dispatch = useDispatch();
   const { isAuth, currentUser } = useAuth();
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const isNannyFavorite = () => {
     return favorites.some((fav) => fav.id === id);
@@ -113,14 +116,36 @@ const NannyItem = ({ nanny }) => {
   return (
     <>
       <NannyCardItem id={id}>
-        <PhotoContainer>
-          <PhotoWrap>
-            <img src={avatar_url} width="96" height="96" alt="Nanny's avatar" />
-          </PhotoWrap>
-        </PhotoContainer>
+        {!isMobile && (
+          <PhotoContainer>
+            <PhotoWrap>
+              <img
+                src={avatar_url}
+                width="96"
+                height="96"
+                alt="Nanny's avatar"
+              />
+            </PhotoWrap>
+          </PhotoContainer>
+        )}
         <CardContent>
           <CardHeaderWrap>
-            <NannyText>Nanny</NannyText>
+            {isMobile && (
+              <PhotoContainer>
+                <PhotoWrap>
+                  <img
+                    src={avatar_url}
+                    width="96"
+                    height="96"
+                    alt="Nanny's avatar"
+                  />
+                </PhotoWrap>
+              </PhotoContainer>
+            )}
+            <NannyItemTitle>
+              <NannyText>Nanny</NannyText>
+              <NannyName>{name}</NannyName>
+            </NannyItemTitle>
             <CardHeaderList>
               <CardHeaderItem>
                 <CardSvg>
@@ -156,7 +181,6 @@ const NannyItem = ({ nanny }) => {
             </CardHeaderList>
           </CardHeaderWrap>
 
-          <NannyName>{name}</NannyName>
           <NannyDataList>
             <NannyDataItem>
               Age: <span>{age}</span>

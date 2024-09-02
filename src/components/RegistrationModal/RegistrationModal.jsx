@@ -88,6 +88,8 @@ const RegistrationModal = () => {
             name="name"
             id="name"
             placeholder="Name"
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) => (e.target.placeholder = "Name")}
           />
           {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
         </ModalLabel>
@@ -98,6 +100,8 @@ const RegistrationModal = () => {
             name="email"
             id="email"
             placeholder="Email"
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) => (e.target.placeholder = "Email")}
           />
           {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
         </ModalLabel>
@@ -117,6 +121,8 @@ const RegistrationModal = () => {
             name="password"
             id="password"
             placeholder="Password"
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) => (e.target.placeholder = "Password")}
           />
           {errors.password && (
             <ErrorMessage>{errors.password.message}</ErrorMessage>

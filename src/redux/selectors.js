@@ -19,7 +19,6 @@ export const selectFilteredNannies = (state) =>
   state.nanniesSlice.filteredNannies;
 export const selectFilteredFavorites = (state) =>
   state.nanniesSlice.filteredFavorites;
-// export const selectIsLoadMore = (state) => state.nanniesSlice.isLoadMore;
 
 export const selectError = (state) => state.globalSlice.error;
 export const selectIsLoading = (state) => state.globalSlice.isLoading;

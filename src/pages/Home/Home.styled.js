@@ -13,19 +13,40 @@ export const HeroSection = styled.section`
   overflow-y: auto;
   background-color: var(--background-hero);
   color: var(--white);
+  @media (max-width: 768px) {
+    flex-direction: column;
+    border-radius: 0;
+    margin: 0;
+  }
 `;
 
 export const LeftPartWrap = styled.div`
   width: 517px;
-  flex: 1 1 49%;
+  flex: 1 1 49.5%;
   display: flex;
   flex-direction: column;
-
   padding-top: 251px;
   padding-right: 64px;
   padding-bottom: 15px;
   padding-left: 96px;
   background-color: var(--red);
+  @media (max-width: 768px) {
+    position: relative;
+    max-width: none;
+    width: 100%;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 40px;
+    flex: 1 1 40%;
+  }
+  @media (max-width: 640px) {
+    width: 100%;
+    padding-top: 120px;
+    padding-bottom: 30px;
+  }
+  @media (max-width: 430px) {
+    padding-top: 80px;
+  }
 `;
 
 export const TitleWrap = styled.div`
@@ -40,12 +61,22 @@ export const HeroTitle = styled.h1`
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.03em;
+  @media (max-width: 768px) {
+    max-width: 600px;
+    font-size: clamp(30px, 8vw, 50px);
+  }
+  @media (max-height: 400px) {
+    font-size: 30px;
+  }
 `;
 
 export const HeroText = styled.p`
   font-size: 28px;
   line-height: 1.07;
   letter-spacing: -0.02em;
+  @media (max-width: 768px) {
+    margin-bottom: 24px;
+  }
 `;
 
 export const HeroLink = styled(Link)`
@@ -82,6 +113,17 @@ export const HeroLink = styled(Link)`
       display: inline-block;
     }
   }
+  @media (max-width: 1024px) {
+    padding: 14px 30px;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  @media (max-width: 640px) {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 
 export const HeroSvg = styled.svg`
@@ -91,12 +133,17 @@ export const HeroSvg = styled.svg`
 `;
 
 export const RightPartWrap = styled.div`
-  flex: 1 1 51%;
+  flex: 1 1 50.5%;
   height: auto;
+
   img {
     height: calc(100lvh - 64px);
     width: 100%;
     box-shadow: inset 0 4px 4px 0 rgba(18, 20, 23, 0.6);
+
+    @media (max-width: 768px) {
+      height: 100%;
+    }
   }
 `;
 
@@ -110,6 +157,12 @@ export const InfoWrap = styled.div`
   padding: 32px;
   border-radius: 20px;
   background-color: var(--white);
+  @media (max-width: 470px) {
+    bottom: 50px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
 `;
 
 export const SvgWrap = styled.div`

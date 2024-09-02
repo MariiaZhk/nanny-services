@@ -18,6 +18,7 @@ import useAuth from "../../utils/hooks/useAuth";
 const NanniesList = ({ filterType }) => {
   const dispatch = useDispatch();
   const nannies = useSelector(selectNannies);
+
   const { currentUser } = useAuth();
 
   const { displayedItems, haveMoreItems, onLoadMoreClick } =

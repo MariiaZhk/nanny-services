@@ -17,15 +17,19 @@ const StyledToastContainer = () => {
       toastStyle={{
         background: "var(--white)",
         color: "var(--red)",
-        width: "400px",
+        width: "auto",
+        maxWidth: "500px",
         fontSize: "16px",
         fontWeight: "600",
         borderRadius: "30px",
         border: "4px solid var(--red)",
+        padding: "10px",
+        wordWrap: "break-word",
+        whiteSpace: "pre-wrap",
       }}
       progressStyle={{ background: "var(--red)" }}
       icon={false}
-      showOnlyTheLastOne={true}
+      limit={1}
     />
   );
 };

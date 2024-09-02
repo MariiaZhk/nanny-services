@@ -14,6 +14,15 @@ export const StyledHeader = styled.div`
   padding-inline: ${({ $home }) => ($home ? "128px" : "0")};
   width: ${({ $home }) => ($home ? "100%" : "100%")};
   color: var(--white);
+
+  @media (max-width: 1024px) {
+    padding-inline: ${({ $home }) => ($home ? "80px" : "20px")};
+  }
+  @media (max-width: 768px) {
+    padding-inline: 20px;
+    position: static;
+    background-color: var(--red);
+  }
 `;
 
 export const HeaderNavWrap = styled.div`
@@ -23,12 +32,19 @@ export const HeaderNavWrap = styled.div`
   padding-block: 20px;
   margin: 0 auto;
   max-width: 1184px;
+  @media (max-width: 1024px) {
+    padding-block: 14px;
+    align-items: normal;
+  }
 `;
 
 export const LogoWrap = styled.div`
   padding-right: ${({ $home }) => ($home ? "0px" : "180px")};
+  @media (max-width: 480px) {
+    padding-right: ${({ $home }) => ($home ? "0px" : "100px")};
+  }
 `;
-export const Wrap = styled.div`
+export const NavAuthWrap = styled.div`
   display: flex;
   gap: 92px;
 `;
@@ -43,6 +59,9 @@ export const Navigation = styled.nav`
   display: flex;
   gap: 40px;
   align-items: center;
+  @media (max-width: 1024px) {
+    gap: 30px;
+  }
 `;
 export const NavLinkStyled = styled(NavLink)`
   position: relative;

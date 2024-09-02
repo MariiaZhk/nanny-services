@@ -3,8 +3,16 @@ import styled from "styled-components";
 export const ReviewHiddenList = styled.ul`
   display: flex;
   flex-direction: column;
-  margin: 30px 0;
+  margin: 48px 0;
   gap: 25px;
+  @media (max-width: 1024px) {
+    margin: 24px 0;
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    margin: 16px 0;
+    gap: 12px;
+  }
 `;
 
 export const ReviewImg = styled.div`
@@ -47,4 +55,7 @@ export const Rating = styled.p`
 
 export const ReviewComment = styled.p`
   font-size: 16px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;

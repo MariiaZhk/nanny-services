@@ -72,12 +72,12 @@ const Modal = () => {
   return ReactDom.createPortal(
     <Overlay onClick={onBackdropClick}>
       <ModalContainer>
-        <Fade in={isModalOpen} timeout={600}>
+        <Fade in={isModalOpen} timeout={900}>
           <ModalStyled>
             {loginModal && <LoginModal />}
             {pleaseLoginModal && <PleaseLoginModal />}
             {registrationModal && <RegistrationModal />}
-            {appointmentModal && <AppointmentModal closeModal={closeModal} />}
+            {appointmentModal && <AppointmentModal />}
             {logoutModal && <LogoutModal />}
             <BtnClose type="button" onClick={closeModal}>
               <ModalSvg>

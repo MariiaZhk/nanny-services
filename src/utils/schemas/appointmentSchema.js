@@ -24,6 +24,8 @@ export const appointmentValidationSchema = Yup.object().shape({
       }
     )
     .required("Email is required"),
-  parent_name: Yup.string().required("Parent's name is required").min(2),
+  parent_name: Yup.string()
+    .required("Parent's name is required")
+    .min(2, "Parent's name must be at least 2 characters"),
   comment: Yup.string().max(300, "Comment can't exceed 300 characters"),
 });
