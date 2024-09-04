@@ -14,3 +14,25 @@ export const FavoritesSection = styled.section`
     margin-block: 20px;
   }
 `;
+
+export const NoFavoritesMessage = styled.div`
+  text-align: center;
+  margin: 20px;
+
+  h2 {
+    font-size: 30px;
+    /* color: var(--text-black); */
+    font-weight: 500;
+    margin-bottom: 10px;
+
+    a {
+      color: var(--red);
+      text-decoration: none;
+      font-weight: 700;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+`;

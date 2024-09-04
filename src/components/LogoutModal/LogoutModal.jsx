@@ -34,7 +34,9 @@ const LogoutModal = () => {
   return (
     <>
       <ModalTitle>Log Out</ModalTitle>
-      <ModalText>Are you sure you want to log out?</ModalText>
+      <ModalText marginBottom="0px">
+        Are you sure you want to log out?
+      </ModalText>
       <div>
         <ModalActionTypeBtn type="button" onClick={handleLogout}>
           Confirm

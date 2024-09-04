@@ -6,7 +6,7 @@ export const HeroSection = styled.section`
   max-width: 1376px;
   margin: 32px;
   border-radius: 30px;
-  height: calc(100lvh - 64px);
+  height: calc(100vh - 64px);
   display: flex;
   justify-content: center;
   overflow-x: hidden;
@@ -14,6 +14,7 @@ export const HeroSection = styled.section`
   background-color: var(--background-hero);
   color: var(--white);
   @media (max-width: 768px) {
+    height: 100%;
     flex-direction: column;
     border-radius: 0;
     margin: 0;
@@ -32,20 +33,18 @@ export const LeftPartWrap = styled.div`
   background-color: var(--red);
   @media (max-width: 768px) {
     position: relative;
-    max-width: none;
     width: 100%;
-    padding-left: 24px;
-    padding-right: 24px;
+    padding: 24px;
+    padding-top: 60px;
     padding-bottom: 40px;
     flex: 1 1 40%;
   }
   @media (max-width: 640px) {
-    width: 100%;
-    padding-top: 120px;
+    padding-top: 50px;
     padding-bottom: 30px;
   }
   @media (max-width: 430px) {
-    padding-top: 80px;
+    padding-top: 40px;
   }
 `;
 
@@ -54,6 +53,9 @@ export const TitleWrap = styled.div`
   flex-direction: column;
   gap: 28px;
   margin-bottom: 64px;
+  @media (max-width: 768px) {
+    margin-bottom: 34px;
+  }
 `;
 
 export const HeroTitle = styled.h1`
@@ -75,7 +77,7 @@ export const HeroText = styled.p`
   line-height: 1.07;
   letter-spacing: -0.02em;
   @media (max-width: 768px) {
-    margin-bottom: 24px;
+    font-size: 20px;
   }
 `;
 
@@ -157,11 +159,20 @@ export const InfoWrap = styled.div`
   padding: 32px;
   border-radius: 20px;
   background-color: var(--white);
+  @media (max-width: 768px) {
+    top: 380px;
+    left: 24px;
+    bottom: auto;
+    right: auto;
+  }
+  @media (max-width: 640px) {
+    top: 350px;
+  }
   @media (max-width: 470px) {
-    bottom: 50px;
+    /* bottom: 50px;
     left: 50%;
     right: auto;
-    transform: translateX(-50%);
+    transform: translateX(-50%); */
   }
 `;
 

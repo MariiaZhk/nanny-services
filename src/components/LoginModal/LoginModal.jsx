@@ -124,7 +124,7 @@ const LoginModal = () => {
           )}
         </ModalLabel>
         <ModalActionTypeBtn type="submit">Log In</ModalActionTypeBtn>
-        <ModalText>
+        <ModalText marginBottom="0px">
           If you don't have an account yet, please{" "}
           <StyledSpan onClick={onRegisterBtnClick}>register</StyledSpan>
         </ModalText>

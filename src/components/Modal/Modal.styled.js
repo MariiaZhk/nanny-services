@@ -15,6 +15,13 @@ export const ModalContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  @media (max-height: 768px) {
+    max-height: 680px;
+  }
+  @media (max-height: 540px) {
+    max-height: 450px;
+  }
 `;
 export const ModalStyled = styled.div`
   height: auto;
@@ -22,7 +29,6 @@ export const ModalStyled = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   padding: 64px;
   z-index: 200;
   border-radius: 30px;
@@ -30,13 +36,21 @@ export const ModalStyled = styled.div`
   color: var(--text-black);
   font-size: 16px;
   max-width: 565px;
-  overflow: hidden;
+  min-width: 300px;
+  /* overflow: hidden; */
+  @media (max-width: 768px) {
+    padding: 30px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 20px;
+  }
 `;
 
 export const ModalSvg = styled.svg`
   width: ${(props) => props.size || "20px"};
   height: ${(props) => props.size || "20px"};
-  stroke: ${(props) => props.color || "var(--text - black)"};
+  stroke: ${(props) => props.color || "var(--text-black)"};
   fill: transparent;
 `;
 
@@ -55,6 +69,10 @@ export const BtnClose = styled.button`
   &:focus {
     scale: 1.4;
   }
+  @media (max-width: 768px) {
+    right: ${(props) => props.size || "16px"};
+    top: ${(props) => props.size || "16px"};
+  }
 `;
 
 export const ModalTitle = styled.h2`
@@ -63,16 +81,21 @@ export const ModalTitle = styled.h2`
   font-size: 40px;
   line-height: 1.2;
   letter-spacing: -0.02em;
+  @media (max-width: 768px) {
+    font-size: 30px;
+    line-height: normal;
+  }
 `;
 export const ModalText = styled.p`
   max-width: 438px;
-  margin-bottom: ${(props) => props.size || "40px"};
+  margin-bottom: ${(props) => props.marginBottom || "40px"};
   color: var(--text-grey);
 `;
 export const ModalForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 18px;
+  max-width: 565px;
 `;
 
 export const ModalLabel = styled.label`
@@ -93,6 +116,11 @@ export const ModalInput = styled.input`
 
   &:hover {
     border: 1px solid var(--text-black);
+  }
+
+  @media (max-width: 768px) {
+    padding: 8px 10px;
+    font-size: 14px;
   }
 `;
 
@@ -139,33 +167,46 @@ export const ModalEyeBtn = styled.button`
 export const ModalActionTypeBtn = styled.button`
   margin-top: 22px;
   border-radius: 30px;
-  padding: 16px 196px;
+  padding: 16px 32px;
+  width: 100%;
+  max-width: 438px;
   border: none;
   outline: none;
   background-color: var(--red);
   color: var(--white);
   cursor: pointer;
   transition: all 0.3s;
-  max-width: 438px;
   white-space: nowrap;
 
   &:hover {
     background-color: var(--pink);
     color: var(--red);
   }
+
+  @media (max-width: 768px) {
+    padding: 14px 24px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 16px;
+  }
 `;
 
-export const ModalClockBtn = styled.div`
-  top: 16px;
-  right: 16px;
-  position: absolute;
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  height: 20px;
-  width: 20px;
-  z-index: 99;
-`;
+// export const BtnsWrap = styled.div`
+// display: flex;
+// flex-direction`;
+
+// export const ModalClockBtn = styled.div`
+//   top: 16px;
+//   right: 16px;
+//   position: absolute;
+//   background-color: transparent;
+//   border: none;
+//   padding: 0;
+//   height: 20px;
+//   width: 20px;
+//   z-index: 99;
+// `;
 
 export const StyledSpan = styled.span`
   color: var(--red);

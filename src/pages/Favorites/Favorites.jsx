@@ -8,9 +8,10 @@ import { selectFavorites } from "../../redux/selectors";
 import NannyItem from "../../components/NannyItem/NannyItem";
 import { NanniesListStyled } from "../../components/NanniesList/NanniesList.styled";
 
-import { FavoritesSection } from "./Favorites.styled";
+import { FavoritesSection, NoFavoritesMessage } from "./Favorites.styled";
 import Filters from "../../components/Filters/Filters";
 import useFilteredPaginatedList from "../../utils/hooks/useFilteredPaginatedList";
+import { Link } from "react-router-dom";
 
 const Favorites = () => {
   const favorites = useSelector(selectFavorites);
@@ -31,9 +32,12 @@ const Favorites = () => {
           </NanniesContainer>
         </>
       ) : (
-        <div>
-          <h2>Choose your favorite babysitters in the catalog.</h2>
-        </div>
+        <NoFavoritesMessage>
+          <h2>
+            Choose your favorite babysitters in the{" "}
+            <Link to="/nannies">catalog</Link>.
+          </h2>
+        </NoFavoritesMessage>
       )}
       {haveMoreItems && (
         <LoadMoreWrapper>
