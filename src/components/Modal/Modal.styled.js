@@ -37,13 +37,15 @@ export const ModalStyled = styled.div`
   font-size: 16px;
   max-width: 565px;
   min-width: 300px;
-  /* overflow: hidden; */
+  @media (max-width: 1024px) {
+    padding: 46px;
+  }
   @media (max-width: 768px) {
-    padding: 30px;
+    padding: 36px;
   }
 
   @media (max-width: 480px) {
-    padding: 20px;
+    padding: 24px;
   }
 `;
 
@@ -191,22 +193,6 @@ export const ModalActionTypeBtn = styled.button`
     padding: 12px 16px;
   }
 `;
-
-// export const BtnsWrap = styled.div`
-// display: flex;
-// flex-direction`;
-
-// export const ModalClockBtn = styled.div`
-//   top: 16px;
-//   right: 16px;
-//   position: absolute;
-//   background-color: transparent;
-//   border: none;
-//   padding: 0;
-//   height: 20px;
-//   width: 20px;
-//   z-index: 99;
-// `;
 
 export const StyledSpan = styled.span`
   color: var(--red);
