@@ -14,6 +14,9 @@ export const StyledHeader = styled.div`
   padding-inline: ${({ $home }) => ($home ? "128px" : "0")};
   width: ${({ $home }) => ($home ? "100%" : "100%")};
   color: var(--white);
+  @media (max-width: 1200px) {
+    padding-inline: ${({ $home }) => ($home ? "100px" : "20px")};
+  }
 
   @media (max-width: 1024px) {
     padding-inline: ${({ $home }) => ($home ? "80px" : "20px")};

@@ -88,7 +88,7 @@ export const ModalTitle = styled.h2`
 `;
 export const ModalText = styled.p`
   max-width: 438px;
-  margin-bottom: ${(props) => props.marginBottom || "40px"};
+  margin-bottom: ${(props) => props.$marginBottom || "40px"};
   color: var(--text-grey);
 `;
 export const ModalForm = styled.form`

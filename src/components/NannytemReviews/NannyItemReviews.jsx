@@ -1,6 +1,6 @@
 import sprite from "../../assets/sprite.svg";
-
 import { v4 as uuidv4 } from "uuid";
+import { CardSvg } from "../NannyItem/NannyItem.styled";
 import {
   Rating,
   ReviewComment,
@@ -10,7 +10,6 @@ import {
   ReviewerName,
   SvgRatingWrap,
 } from "./NannyItemReviews.styled";
-import { CardSvg } from "../NannyItem/NannyItem.styled";
 
 const NannyItemReviews = ({ reviews }) => {
   return (

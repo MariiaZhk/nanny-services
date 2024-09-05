@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import sprite from "../../../assets/sprite.svg";
-
 import useAuth from "../../../utils/hooks/useAuth";
-
+import { BtnClose, ModalSvg } from "../../Modal/Modal.styled";
+import AuthUserBlock from "../AuthBlock/AuthBlock";
 import {
   Container,
   Menu,
@@ -12,9 +12,6 @@ import {
   StyledLinkBurger,
   StyledNavigationBurger,
 } from "./BurgerMenu.styled";
-
-import { BtnClose, ModalSvg } from "../../Modal/Modal.styled";
-import AuthUserBlock from "../AuthBlock/AuthBlock";
 
 const BurgerMenu = () => {
   const { isAuth } = useAuth();

@@ -3,7 +3,6 @@ import Home from "../pages/Home/Home";
 import Nannies from "../pages/Nannies/Nannies";
 import Favorites from "../pages/Favorites/Favorites";
 import { Layout } from "./Layout/Layout";
-
 import PrivateRoute from "../routesConfig/PrivateRoute";
 import { Loader } from "./Loader/Loader";
 import { useSelector } from "react-redux";

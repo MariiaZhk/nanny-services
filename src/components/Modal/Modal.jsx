@@ -3,6 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Fade } from "@mui/material";
 import sprite from "../../assets/sprite.svg";
 import { closeModals } from "../../redux/modalsSlice";
+import { useCallback, useEffect } from "react";
+import AppointmentModal from "../AppointmentModal/AppointmentModal";
+import LogoutModal from "../LogoutModal/LogoutModal";
+import PleaseLoginModal from "../PleaseLoginModal/PleaseLoginModal";
+import LoginModal from "../LoginModal/LoginModal";
+import RegistrationModal from "../RegistrationModal/RegistrationModal";
 import {
   BtnClose,
   ModalContainer,
@@ -18,13 +24,6 @@ import {
   selectPleaseLoginModal,
   selectRegistrationModal,
 } from "../../redux/selectors";
-import LoginModal from "../LoginModal/LoginModal";
-import RegistrationModal from "../RegistrationModal/RegistrationModal";
-
-import { useCallback, useEffect } from "react";
-import AppointmentModal from "../AppointmentModal/AppointmentModal";
-import LogoutModal from "../LogoutModal/LogoutModal";
-import PleaseLoginModal from "../PleaseLoginModal/PleaseLoginModal";
 
 const modalRoot = document.getElementById("portal");
 

@@ -1,3 +1,19 @@
+import useAuth from "../../utils/hooks/useAuth";
+import { useMediaQuery } from "react-responsive";
+import sprite from "../../assets/sprite.svg";
+import { useState } from "react";
+import NannyItemReviews from "../NannytemReviews/NannyItemReviews";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFavorites } from "../../redux/selectors";
+import {
+  changeAppointmentModal,
+  changeIsModalOpen,
+  changePleaseLoginModal,
+} from "../../redux/modalsSlice";
+import {
+  removeFavoriteByIdThunk,
+  setUserFavoritesThunk,
+} from "../../redux/operations";
 import {
   BtnBox,
   CardContent,
@@ -20,22 +36,6 @@ import {
   PriceSpan,
   ReadMoreBtn,
 } from "../NannyItem/NannyItem.styled";
-import sprite from "../../assets/sprite.svg";
-import { useState } from "react";
-import NannyItemReviews from "../NannytemReviews/NannyItemReviews";
-import { useDispatch, useSelector } from "react-redux";
-import { selectFavorites } from "../../redux/selectors";
-import {
-  changeAppointmentModal,
-  changeIsModalOpen,
-  changePleaseLoginModal,
-} from "../../redux/modalsSlice";
-import {
-  removeFavoriteByIdThunk,
-  setUserFavoritesThunk,
-} from "../../redux/operations";
-import useAuth from "../../utils/hooks/useAuth";
-import { useMediaQuery } from "react-responsive";
 
 const NannyItem = ({ nanny }) => {
   const {

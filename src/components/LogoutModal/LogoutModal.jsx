@@ -1,15 +1,14 @@
-import {
-  ModalActionTypeBtn,
-  ModalText,
-  ModalTitle,
-} from "../Modal/Modal.styled";
-
 import { getAuth, signOut } from "firebase/auth";
 import { logout } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import { closeModals } from "../../redux/modalsSlice";
 import { useDispatch } from "react-redux";
 import { setFilterDelete } from "../../redux/nanniesSlice";
+import {
+  ModalActionTypeBtn,
+  ModalText,
+  ModalTitle,
+} from "../Modal/Modal.styled";
 
 const LogoutModal = () => {
   const auth = getAuth();
@@ -34,7 +33,7 @@ const LogoutModal = () => {
   return (
     <>
       <ModalTitle>Log Out</ModalTitle>
-      <ModalText marginBottom="0px">
+      <ModalText $marginBottom="0px">
         Are you sure you want to log out?
       </ModalText>
       <div>

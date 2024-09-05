@@ -31,10 +31,16 @@ export const LeftPartWrap = styled.div`
   padding-bottom: 15px;
   padding-left: 96px;
   background-color: var(--red);
+  @media (max-width: 1200px) {
+    padding-left: 68px;
+  }
+  @media (max-width: 1024px) {
+    padding-left: 48px;
+  }
   @media (max-width: 768px) {
     position: relative;
     width: 100%;
-    padding: 24px;
+    padding-inline: 20px;
     padding-top: 60px;
     padding-bottom: 40px;
     flex: 1 1 40%;
@@ -59,26 +65,19 @@ export const TitleWrap = styled.div`
 `;
 
 export const HeroTitle = styled.h1`
-  font-size: 70px;
+  font-size: clamp(40px, 4.1vw, 70px);
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.03em;
   @media (max-width: 768px) {
     max-width: 600px;
-    font-size: clamp(30px, 8vw, 50px);
-  }
-  @media (max-height: 400px) {
-    font-size: 30px;
   }
 `;
 
 export const HeroText = styled.p`
-  font-size: 28px;
+  font-size: clamp(20px, 2.5vw, 28px);
   line-height: 1.07;
   letter-spacing: -0.02em;
-  @media (max-width: 768px) {
-    font-size: 20px;
-  }
 `;
 
 export const HeroLink = styled(Link)`
@@ -161,18 +160,12 @@ export const InfoWrap = styled.div`
   background-color: var(--white);
   @media (max-width: 768px) {
     top: 380px;
-    left: 24px;
+    left: 20px;
     bottom: auto;
     right: auto;
   }
   @media (max-width: 640px) {
     top: 350px;
-  }
-  @media (max-width: 470px) {
-    /* bottom: 50px;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%); */
   }
 `;
 

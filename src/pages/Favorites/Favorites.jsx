@@ -1,17 +1,16 @@
 import { useSelector } from "react-redux";
+import { selectFavorites } from "../../redux/selectors";
+import NannyItem from "../../components/NannyItem/NannyItem";
+import useFilteredPaginatedList from "../../utils/hooks/useFilteredPaginatedList";
+import Filters from "../../components/Filters/Filters";
+import { Link } from "react-router-dom";
+import { NanniesListStyled } from "../../components/NanniesList/NanniesList.styled";
+import { FavoritesSection, NoFavoritesMessage } from "./Favorites.styled";
 import {
   LoadMoreBtn,
   LoadMoreWrapper,
   NanniesContainer,
 } from "../Nannies/Nannies.styled";
-import { selectFavorites } from "../../redux/selectors";
-import NannyItem from "../../components/NannyItem/NannyItem";
-import { NanniesListStyled } from "../../components/NanniesList/NanniesList.styled";
-
-import { FavoritesSection, NoFavoritesMessage } from "./Favorites.styled";
-import Filters from "../../components/Filters/Filters";
-import useFilteredPaginatedList from "../../utils/hooks/useFilteredPaginatedList";
-import { Link } from "react-router-dom";
 
 const Favorites = () => {
   const favorites = useSelector(selectFavorites);

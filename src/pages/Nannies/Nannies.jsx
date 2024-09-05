@@ -1,7 +1,6 @@
 import NanniesList from "../../components/NanniesList/NanniesList";
-import { NanniesSection } from "./Nannies.styled";
-
 import Filters from "../../components/Filters/Filters";
+import { NanniesSection } from "./Nannies.styled";
 
 const Nannies = () => {
   return (

@@ -1,3 +1,8 @@
+import AuthUserBlock from "./AuthBlock/AuthBlock";
+import { useLocation } from "react-router-dom";
+import useAuth from "../../utils/hooks/useAuth";
+import { useMediaQuery } from "react-responsive";
+import BurgerMenu from "./BurgerMenu/BurgerMenu";
 import {
   HeaderNavWrap,
   Logo,
@@ -7,11 +12,6 @@ import {
   Navigation,
   StyledHeader,
 } from "./Header.styled";
-import AuthUserBlock from "./AuthBlock/AuthBlock";
-import { useLocation } from "react-router-dom";
-import useAuth from "../../utils/hooks/useAuth";
-import { useMediaQuery } from "react-responsive";
-import BurgerMenu from "./BurgerMenu/BurgerMenu";
 
 export const Header = () => {
   const { isAuth } = useAuth();

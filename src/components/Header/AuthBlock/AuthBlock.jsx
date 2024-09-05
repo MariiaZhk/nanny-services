@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import sprite from "../../../assets/sprite.svg";
-
+import useAuth from "../../../utils/hooks/useAuth";
 import {
   changeIsModalOpen,
   changeLoginModal,
@@ -16,7 +16,6 @@ import {
   UserInfo,
   UserSvg,
 } from "./AuthBlock.styled";
-import useAuth from "../../../utils/hooks/useAuth";
 
 const AuthUserBlock = () => {
   const { name, isAuth } = useAuth();

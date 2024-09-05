@@ -1,3 +1,5 @@
+import sprite from "../../assets/sprite.svg";
+import heroImg from "../../assets/hero@2x.png";
 import {
   HeroLink,
   HeroSection,
@@ -13,8 +15,6 @@ import {
   SvgWrap,
   TitleWrap,
 } from "./Home.styled";
-import sprite from "../../assets/sprite.svg";
-import heroImg from "../../assets/hero@2x.png";
 
 function Home() {
   return (

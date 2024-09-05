@@ -21,7 +21,6 @@ export const NoFavoritesMessage = styled.div`
 
   h2 {
     font-size: 30px;
-    /* color: var(--text-black); */
     font-weight: 500;
     margin-bottom: 10px;
 

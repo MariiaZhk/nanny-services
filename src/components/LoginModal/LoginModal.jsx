@@ -2,6 +2,11 @@ import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import sprite from "../../assets/sprite.svg";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/authSlice";
+import { baseAuthValidationSchema } from "../../utils/schemas/authSchema";
 import {
   ErrorMessage,
   ModalActionTypeBtn,
@@ -14,16 +19,11 @@ import {
   ModalTitle,
   StyledSpan,
 } from "../Modal/Modal.styled";
-import { useForm } from "react-hook-form";
-import sprite from "../../assets/sprite.svg";
-import { useDispatch } from "react-redux";
-import { login } from "../../redux/authSlice";
 import {
   changeLoginModal,
   changeRegistrationModal,
   closeModals,
 } from "../../redux/modalsSlice";
-import { baseAuthValidationSchema } from "../../utils/schemas/authSchema";
 
 const LoginModal = () => {
   const [eyePass, setEyePass] = useState(false);
@@ -124,7 +124,7 @@ const LoginModal = () => {
           )}
         </ModalLabel>
         <ModalActionTypeBtn type="submit">Log In</ModalActionTypeBtn>
-        <ModalText marginBottom="0px">
+        <ModalText $marginBottom="0px">
           If you don't have an account yet, please{" "}
           <StyledSpan onClick={onRegisterBtnClick}>register</StyledSpan>
         </ModalText>
